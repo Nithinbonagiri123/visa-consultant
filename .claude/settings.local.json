@@ -3,7 +3,13 @@
     "allow": [
       "Bash(rm -rf .next)",
       "Bash(npx next *)",
-      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} · %{size_download} bytes · %{time_total}s\\\\n\" http://localhost:3027/)"
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} · %{size_download} bytes · %{time_total}s\\\\n\" http://localhost:3027/)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /tmp/aethera.html -w \"HTTP %{http_code} · %{size_download} bytes · %{time_total}s\\\\n\" http://localhost:3027/)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -o /dev/null -w \"main.tsx → HTTP %{http_code}\\\\n\" \"http://localhost:3027/src/main.tsx\")",
+      "Bash(curl -s \"http://localhost:3027/src/App.tsx\" -o /dev/null -w \"App.tsx → HTTP %{http_code}\\\\n\")"
     ]
   }
 }
