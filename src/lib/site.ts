@@ -21,12 +21,12 @@ export const site = {
 } as const;
 
 export const navLinks = [
-  { label: "Destinations", href: "#destinations" },
-  { label: "Services", href: "#services" },
-  { label: "Journey", href: "#journey" },
-  { label: "Universities", href: "#universities" },
-  { label: "Stories", href: "#stories" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Destinations", href: "/#destinations" },
+  { label: "Finder", href: "/find-your-destination" },
+  { label: "Services", href: "/#services" },
+  { label: "Journey", href: "/#journey" },
+  { label: "Stories", href: "/#stories" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export type Destination = {

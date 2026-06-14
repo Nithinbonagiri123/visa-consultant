@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { TrustStats } from "@/components/sections/trust-stats";
 import { Destinations } from "@/components/sections/destinations";
+import { FinderPromo } from "@/components/sections/finder-promo";
 import { Services } from "@/components/sections/services";
 import { Journey } from "@/components/sections/journey";
 import { Universities } from "@/components/sections/universities";
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <TrustStats />
       <Destinations />
+      <FinderPromo />
       <Services />
       <Journey />
       <Universities />
