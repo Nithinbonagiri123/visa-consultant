@@ -11,6 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${site.url}/visa-eligibility`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     ...destinations.map((d) => ({
       url: `${site.url}/study-in-${d.slug}`,
       lastModified: now,

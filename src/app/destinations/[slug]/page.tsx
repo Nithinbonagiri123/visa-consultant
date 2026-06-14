@@ -345,6 +345,23 @@ function Visa({
             </p>
           </div>
         </div>
+
+        <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur sm:flex-row sm:items-center">
+          <div>
+            <p className="font-display text-lg font-semibold text-white">
+              Check your {dest.country} visa eligibility in 90 seconds.
+            </p>
+            <p className="mt-1 text-sm text-navy-200">
+              Six questions. Country-specific scoring against the same bar consulates use.
+            </p>
+          </div>
+          <Link
+            href={`/visa-eligibility?country=${dest.slug}`}
+            className={buttonVariants({ variant: "gold", size: "lg" })}
+          >
+            Start eligibility check <ArrowRight size={18} />
+          </Link>
+        </div>
       </Container>
     </section>
   );

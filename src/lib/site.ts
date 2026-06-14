@@ -23,8 +23,8 @@ export const site = {
 export const navLinks = [
   { label: "Destinations", href: "/#destinations" },
   { label: "Finder", href: "/find-your-destination" },
+  { label: "Visa Check", href: "/visa-eligibility" },
   { label: "Services", href: "/#services" },
-  { label: "Journey", href: "/#journey" },
   { label: "Stories", href: "/#stories" },
   { label: "FAQ", href: "/#faq" },
 ] as const;

@@ -72,7 +72,7 @@ export function Hero() {
                 Book free consultation
                 <ArrowRight size={18} />
               </a>
-              <a href="#destinations" className={buttonVariants({ variant: "outline", size: "lg" })}>
+              <a href="/visa-eligibility" className={buttonVariants({ variant: "outline", size: "lg" })}>
                 Check visa eligibility
               </a>
             </motion.div>
