@@ -24,8 +24,8 @@ export const navLinks = [
   { label: "Destinations", href: "/#destinations" },
   { label: "Finder", href: "/find-your-destination" },
   { label: "Visa Check", href: "/visa-eligibility" },
+  { label: "Blog", href: "/blog" },
   { label: "Services", href: "/#services" },
-  { label: "Stories", href: "/#stories" },
   { label: "FAQ", href: "/#faq" },
 ] as const;
 

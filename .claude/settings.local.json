@@ -40,7 +40,8 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"http://localhost:3000/study-in-ireland\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"http://localhost:3000/whatever\")",
       "Bash(PORT=3000 npm run start)",
-      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3000/visa-eligibility)"
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3000/visa-eligibility)",
+      "Bash(awk '/LISTEN/ {print $2}')"
     ]
   }
 }

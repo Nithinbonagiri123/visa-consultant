@@ -133,6 +133,122 @@ body {
   animation: marquee 40s linear infinite;
 }
 
+/* ---- Brand prose styles (for MDX article body) ---------------------------- */
+.prose-brand {
+  color: var(--foreground);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  font-family: var(--font-inter);
+}
+.prose-brand > * + * { margin-top: 1.25em; }
+.prose-brand h2 {
+  font-family: var(--font-manrope);
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-top: 2.4em;
+  margin-bottom: 0.6em;
+  color: var(--navy-900);
+}
+.prose-brand h3 {
+  font-family: var(--font-manrope);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin-top: 2em;
+  margin-bottom: 0.4em;
+  color: var(--navy-900);
+}
+.prose-brand h4 {
+  font-family: var(--font-manrope);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+  color: var(--navy-900);
+}
+.prose-brand p {
+  color: var(--foreground);
+}
+.prose-brand a {
+  color: var(--royal-600);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-brand a:hover {
+  color: var(--navy-900);
+}
+.prose-brand strong {
+  color: var(--navy-900);
+  font-weight: 600;
+}
+.prose-brand ul, .prose-brand ol {
+  padding-left: 1.4em;
+}
+.prose-brand ul { list-style: disc; }
+.prose-brand ol { list-style: decimal; }
+.prose-brand li { margin-top: 0.5em; }
+.prose-brand li::marker { color: var(--gold-400); }
+.prose-brand blockquote {
+  border-left: 3px solid var(--gold-400);
+  padding-left: 1.25em;
+  font-style: italic;
+  color: var(--navy-700);
+}
+.prose-brand code {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  padding: 0.1em 0.35em;
+  border-radius: 0.35em;
+  font-size: 0.92em;
+}
+.prose-brand pre {
+  background: var(--navy-950);
+  color: #e2e8f0;
+  padding: 1.1em 1.25em;
+  border-radius: 1em;
+  overflow-x: auto;
+  font-size: 0.92em;
+  line-height: 1.6;
+}
+.prose-brand pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+.prose-brand hr {
+  border-top: 1px solid var(--border);
+  margin: 2.5em 0;
+}
+.prose-brand table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.prose-brand thead {
+  background: var(--surface-muted);
+}
+.prose-brand th, .prose-brand td {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.prose-brand th {
+  font-weight: 600;
+  color: var(--navy-900);
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.prose-brand tr:last-child td { border-bottom: 0; }
+
 @keyframes marquee {
   from { transform: translate3d(0, 0, 0); }
   to   { transform: translate3d(-50%, 0, 0); }
