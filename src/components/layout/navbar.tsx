@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { CurrencySwitcher } from "@/components/layout/currency-switcher";
 import { site, navLinks } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -54,12 +55,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <a
-            href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
-            className={buttonVariants({ size: "sm", variant: "ghost" })}
-          >
-            {site.contact.phone}
-          </a>
+          <CurrencySwitcher />
           <a
             href="#enquire"
             className={buttonVariants({ size: "sm", variant: "gold" })}
@@ -97,6 +93,12 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              <div className="mt-3 flex items-center justify-between rounded-2xl bg-navy-50 px-4 py-3">
+                <span className="text-xs font-medium uppercase tracking-wider text-navy-700">
+                  Currency
+                </span>
+                <CurrencySwitcher align="left" />
+              </div>
               <a
                 href="#enquire"
                 onClick={() => setOpen(false)}

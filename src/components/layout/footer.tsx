@@ -1,14 +1,39 @@
 import Link from "next/link";
-import { site, navLinks, destinations, services } from "@/lib/site";
+import { site, navLinks, destinations } from "@/lib/site";
 import { Container } from "@/components/ui/container";
+import { NewsletterForm } from "@/components/forms/newsletter-form";
+
+const toolLinks = [
+  { label: "Destination Finder", href: "/find-your-destination" },
+  { label: "Visa Eligibility", href: "/visa-eligibility" },
+  { label: "EMI Calculator", href: "/loan-emi-calculator" },
+  { label: "Scholarship Match", href: "/scholarships" },
+  { label: "Compare Countries", href: "/compare" },
+  { label: "Glossary", href: "/glossary" },
+] as const;
 
 export function Footer() {
   return (
     <footer className="relative mt-32 overflow-hidden bg-navy-950 text-navy-100">
       <div className="absolute inset-0 bg-grid opacity-[0.04]" />
       <div className="absolute -top-40 left-1/2 h-80 w-[120%] -translate-x-1/2 rounded-[100%] bg-royal-500/20 blur-3xl" />
+
       <Container className="relative py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        {/* Newsletter band */}
+        <div className="grid gap-8 border-b border-white/10 pb-12 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
+              Newsletter
+            </p>
+            <h3 className="mt-3 max-w-xl font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
+              One short email a fortnight. Country updates, scholarship deadlines, intake reminders.
+            </h3>
+          </div>
+          <NewsletterForm variant="dark" />
+        </div>
+
+        {/* Columns */}
+        <div className="grid gap-12 pt-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             <div className="flex items-center gap-2">
               <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-gold-300 to-gold-500 text-navy-900">
@@ -52,16 +77,16 @@ export function Footer() {
 
           <FooterCol title="Destinations">
             {destinations.slice(0, 6).map((d) => (
-              <FooterLink key={d.slug} href={`#destinations`}>
+              <FooterLink key={d.slug} href={`/study-in-${d.slug}`}>
                 Study in {d.country}
               </FooterLink>
             ))}
           </FooterCol>
 
-          <FooterCol title="Services">
-            {services.slice(0, 6).map((s) => (
-              <FooterLink key={s.title} href="#services">
-                {s.title}
+          <FooterCol title="Tools">
+            {toolLinks.map((t) => (
+              <FooterLink key={t.href} href={t.href}>
+                {t.label}
               </FooterLink>
             ))}
           </FooterCol>
@@ -72,7 +97,7 @@ export function Footer() {
           <div className="flex items-center gap-5">
             <Link href="#" className="hover:text-white">Privacy</Link>
             <Link href="#" className="hover:text-white">Terms</Link>
-            <Link href="#" className="hover:text-white">Sitemap</Link>
+            <Link href="/sitemap.xml" className="hover:text-white">Sitemap</Link>
           </div>
         </div>
       </Container>

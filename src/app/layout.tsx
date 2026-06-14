@@ -5,6 +5,8 @@ import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
+import { MobileCtaBar } from "@/components/layout/mobile-cta-bar";
+import { CurrencyProvider } from "@/contexts/currency-context";
 import { site } from "@/lib/site";
 
 const inter = Inter({
@@ -69,12 +71,15 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
-        <SmoothScroll>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
-        <WhatsAppButton />
+        <CurrencyProvider>
+          <SmoothScroll>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
+          <WhatsAppButton />
+          <MobileCtaBar />
+        </CurrencyProvider>
       </body>
     </html>
   );

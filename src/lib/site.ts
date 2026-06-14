@@ -22,11 +22,11 @@ export const site = {
 
 export const navLinks = [
   { label: "Destinations", href: "/#destinations" },
-  { label: "Finder", href: "/find-your-destination" },
-  { label: "Visa Check", href: "/visa-eligibility" },
+  { label: "Programmes", href: "/programmes" },
+  { label: "Compare", href: "/compare" },
+  { label: "Tools", href: "/find-your-destination" },
+  { label: "Counsellors", href: "/counsellors" },
   { label: "Blog", href: "/blog" },
-  { label: "Services", href: "/#services" },
-  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export type Destination = {

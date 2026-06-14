@@ -1,17 +1,24 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { buildWhatsAppMessage } from "@/lib/whatsapp";
+
+const FALLBACK_MESSAGE = "I'd like to know more about studying abroad.";
+
+function defaultHref(number: string) {
+  return `https://wa.me/${number}?text=${encodeURIComponent(`Hi ${site.name}, ${FALLBACK_MESSAGE}`)}`;
+}
 
 export function WhatsAppButton() {
   const number = site.contact.whatsapp.replace(/[^\d]/g, "");
-  const message = encodeURIComponent(
-    `Hi ${site.name}, I'd like to know more about studying abroad.`,
-  );
+  const href = useWhatsAppHref(number);
 
   return (
     <motion.a
-      href={`https://wa.me/${number}?text=${message}`}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
@@ -20,7 +27,7 @@ export function WhatsAppButton() {
       transition={{ delay: 1.4, duration: 0.4, ease: "easeOut" }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 right-6 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_12px_40px_-8px_rgba(37,211,102,0.55)] ring-2 ring-white/70"
+      className="fixed bottom-6 right-6 z-40 hidden h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_12px_40px_-8px_rgba(37,211,102,0.55)] ring-2 ring-white/70 md:grid"
     >
       <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366]/30" />
       <svg viewBox="0 0 24 24" className="relative h-6 w-6" fill="currentColor">
@@ -28,4 +35,25 @@ export function WhatsAppButton() {
       </svg>
     </motion.a>
   );
+}
+
+// Renders with a sensible default href at SSR (no useSearchParams() during render
+// → no static-prerender bailout). Once hydrated, reads window.location.search and
+// computes the context-aware message for the current page.
+export function useWhatsAppHref(number: string): string {
+  const pathname = usePathname();
+  const [href, setHref] = useState(() => defaultHref(number));
+
+  useEffect(() => {
+    const search =
+      typeof window !== "undefined"
+        ? new URLSearchParams(window.location.search)
+        : undefined;
+    const msg = buildWhatsAppMessage(pathname || "/", search);
+    setHref(
+      `https://wa.me/${number}?text=${encodeURIComponent(`Hi ${site.name}, ${msg}`)}`,
+    );
+  }, [pathname, number]);
+
+  return href;
 }

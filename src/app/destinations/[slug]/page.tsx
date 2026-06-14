@@ -5,6 +5,7 @@ import { ArrowRight, GraduationCap, Wallet, Plane, Trophy, Briefcase } from "luc
 
 import { Container, SectionHeading } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
+import { Cost } from "@/components/ui/cost";
 import { Breadcrumb, BreadcrumbJsonLd, type Crumb } from "@/components/layout/breadcrumb";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { CTABand } from "@/components/sections/cta-band";
@@ -125,7 +126,7 @@ function DestinationHero({
             </div>
 
             <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4">
-              <Stat label="Tuition" value={dest.costFromINR} />
+              <Stat label="Tuition" value={<Cost inr={dest.costFromINR} />} />
               <Stat label="Intakes" value={dest.intakes} />
               <Stat label="Stay-back" value={dest.highlights[0]} />
             </dl>
@@ -140,7 +141,7 @@ function DestinationHero({
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function Stat({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="rounded-2xl border border-navy-100 bg-white p-4">
       <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-500">
@@ -280,7 +281,7 @@ function Costs({ detail }: { detail: (typeof destinationDetail)[string] }) {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right font-display text-base font-semibold text-navy-900">
-                    {c.range}
+                    <Cost inr={c.range} />
                   </td>
                 </tr>
               ))}

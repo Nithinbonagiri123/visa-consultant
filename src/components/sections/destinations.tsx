@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/container";
+import { Cost } from "@/components/ui/cost";
 import { destinations } from "@/lib/site";
 
 export function Destinations() {
@@ -75,7 +76,7 @@ export function Destinations() {
                     Tuition from
                   </p>
                   <p className="font-display text-lg font-semibold text-navy-900">
-                    {d.costFromINR}
+                    <Cost inr={d.costFromINR} />
                   </p>
                 </div>
                 <div className="text-right">
