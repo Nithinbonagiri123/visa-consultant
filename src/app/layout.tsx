@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { MobileCtaBar } from "@/components/layout/mobile-cta-bar";
 import { CurrencyProvider } from "@/contexts/currency-context";
+import { CrispChat } from "@/components/integrations/crisp-chat";
 import { site } from "@/lib/site";
 
 const inter = Inter({
@@ -80,6 +81,7 @@ export default function RootLayout({
           <WhatsAppButton />
           <MobileCtaBar />
         </CurrencyProvider>
+        <CrispChat />
       </body>
     </html>
   );

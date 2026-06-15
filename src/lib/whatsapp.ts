@@ -61,6 +61,22 @@ export function buildWhatsAppMessage(
     return "I'm comparing destinations and need help deciding.";
   }
 
+  if (pathname.startsWith("/universities/")) {
+    return "I'd like advice on applying to this university.";
+  }
+
+  if (pathname.startsWith("/universities")) {
+    return "I'd like help shortlisting universities.";
+  }
+
+  if (pathname.startsWith("/admit-probability")) {
+    return "I'd like a counsellor to validate my university shortlist.";
+  }
+
+  if (pathname.startsWith("/guides/")) {
+    return "I just downloaded one of your guides and have a few questions.";
+  }
+
   if (pathname.startsWith("/blog/")) {
     return "I just read your article and have a few questions.";
   }

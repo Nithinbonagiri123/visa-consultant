@@ -1,15 +1,17 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { getGuide } from "@/lib/guides-data";
 import { forwardWebhook } from "@/lib/webhook-forward";
 
-// Newsletter signups fan out to the leads sheet (under a tagged row) and to
-// the drip platform, tagged "newsletter" so the drip system starts the
-// nurture sequence.
+// Captures a lead for a specific guide download. Fans out to the leads sheet
+// (so you can see every download) and to the drip platform (which is what
+// actually sends the PDF and starts the country-specific nurture series).
 
 export const runtime = "nodejs";
 
 const schema = z.object({
   email: z.string().trim().email("Please enter a valid email"),
+  guideSlug: z.string().trim().min(1),
 });
 
 export async function POST(req: Request) {
@@ -28,10 +30,17 @@ export async function POST(req: Request) {
     );
   }
 
+  const guide = getGuide(parsed.data.guideSlug);
+  if (!guide) {
+    return NextResponse.json({ error: "Unknown guide" }, { status: 404 });
+  }
+
   const payload = {
-    type: "newsletter",
+    type: "guide_download",
     email: parsed.data.email,
-    tags: ["newsletter"],
+    guideSlug: guide.slug,
+    guideTitle: guide.title,
+    tags: ["guide-downloaded", ...guide.tags],
     submittedAt: new Date().toISOString(),
     source: req.headers.get("referer") ?? "direct",
   };
@@ -40,12 +49,12 @@ export async function POST(req: Request) {
     forwardWebhook(
       process.env.GOOGLE_SHEETS_WEBHOOK_URL,
       payload,
-      "newsletter/sheets",
+      "guides/sheets",
     ),
     forwardWebhook(
       process.env.EMAIL_DRIP_WEBHOOK_URL,
       payload,
-      "newsletter/drip",
+      "guides/drip",
     ),
   ]);
 

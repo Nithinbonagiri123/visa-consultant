@@ -22,10 +22,10 @@ export const site = {
 
 export const navLinks = [
   { label: "Destinations", href: "/#destinations" },
+  { label: "Universities", href: "/universities" },
   { label: "Programmes", href: "/programmes" },
-  { label: "Compare", href: "/compare" },
   { label: "Tools", href: "/find-your-destination" },
-  { label: "Counsellors", href: "/counsellors" },
+  { label: "Guides", href: "/guides" },
   { label: "Blog", href: "/blog" },
 ] as const;
 

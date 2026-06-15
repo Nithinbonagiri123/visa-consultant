@@ -48,7 +48,12 @@
       "Bash(curl -s http://localhost:3000/glossary -o /tmp/gl.html)",
       "Bash(node -e ' *)",
       "Bash(curl -s http://localhost:3000/compare/canada-vs-uk)",
-      "Bash(curl -s http://localhost:3000/programmes/ms-computer-science-in-canada)"
+      "Bash(curl -s http://localhost:3000/programmes/ms-computer-science-in-canada)",
+      "Bash(curl -s http://localhost:3000/universities/trinity-college-dublin -o /tmp/tcd.html)",
+      "Bash(curl -s http://localhost:3000/compare-programmes/ms-computer-science-vs-ms-data-science -o /tmp/csds.html)",
+      "Bash(curl -s http://localhost:3000/admit-probability -o /tmp/admit.html)",
+      "Bash(curl -s http://localhost:3000/guides/canada-study-guide-2026 -o /tmp/guide.html)",
+      "WebFetch(domain:21st.dev)"
     ]
   }
 }

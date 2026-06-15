@@ -4,6 +4,13 @@ import { getAllPostMeta } from "@/lib/blog";
 import { counsellors } from "@/lib/counsellors";
 import { getAllProgrammeRoutes, buildProgrammeSlug } from "@/lib/programmes-data";
 import { SUPPORTED_PAIRS, buildComparisonPairSlug } from "@/lib/comparator";
+import { cities } from "@/lib/cities-data";
+import { universities } from "@/lib/universities-data";
+import { guides } from "@/lib/guides-data";
+import {
+  SUPPORTED_PROGRAMME_PAIRS,
+  buildProgrammePairSlug,
+} from "@/lib/programme-comparator";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -19,12 +26,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${site.url}/loan-emi-calculator`,    lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/scholarships`,           lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/compare`,                lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/compare-programmes`,     lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/admit-probability`,      lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/glossary`,               lastModified: now, changeFrequency: "yearly",  priority: 0.7 },
 
     // Section landings
-    { url: `${site.url}/programmes`,  lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/counsellors`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${site.url}/blog`,        lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${site.url}/programmes`,   lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/universities`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/counsellors`,  lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${site.url}/guides`,       lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/blog`,         lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
 
     // Destinations
     ...destinations.map((d) => ({
@@ -42,9 +53,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })),
 
-    // Comparison SEO pages
+    // City pages
+    ...cities.map((c) => ({
+      url: `${site.url}/study-in-${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+
+    // University pages
+    ...universities.map((u) => ({
+      url: `${site.url}/universities/${u.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+
+    // Guide download pages
+    ...guides.map((g) => ({
+      url: `${site.url}/guides/${g.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+
+    // Country comparison SEO pages
     ...SUPPORTED_PAIRS.map((p) => ({
       url: `${site.url}/compare/${buildComparisonPairSlug(p.a, p.b)}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+
+    // Programme comparison SEO pages
+    ...SUPPORTED_PROGRAMME_PAIRS.map((p) => ({
+      url: `${site.url}/compare-programmes/${buildProgrammePairSlug(p.a, p.b)}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
