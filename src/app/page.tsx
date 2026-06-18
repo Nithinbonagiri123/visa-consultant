@@ -1,12 +1,12 @@
 import { Hero } from "@/components/sections/hero";
 import { TrustStats } from "@/components/sections/trust-stats";
-import { Destinations } from "@/components/sections/destinations";
-import { FinderPromo } from "@/components/sections/finder-promo";
-import { Services } from "@/components/sections/services";
-import { Journey } from "@/components/sections/journey";
-import { Universities } from "@/components/sections/universities";
-import { Testimonials } from "@/components/sections/testimonials";
-import { FAQ } from "@/components/sections/faq";
+import {
+  DestinationsTeaser,
+  ServicesTeaser,
+  ToolsTeaser,
+  StoriesTeaser,
+  FAQTeaser,
+} from "@/components/sections/homepage-teasers";
 import { CTABand } from "@/components/sections/cta-band";
 import { OrganizationJsonLd, FaqJsonLd } from "@/components/seo/jsonld";
 
@@ -17,13 +17,11 @@ export default function Home() {
       <FaqJsonLd />
       <Hero />
       <TrustStats />
-      <Destinations />
-      <FinderPromo />
-      <Services />
-      <Journey />
-      <Universities />
-      <Testimonials />
-      <FAQ />
+      <DestinationsTeaser />
+      <ServicesTeaser />
+      <ToolsTeaser />
+      <StoriesTeaser />
+      <FAQTeaser />
       <CTABand />
     </>
   );

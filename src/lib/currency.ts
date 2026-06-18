@@ -44,14 +44,14 @@ type ParsedRange = {
   trailing: string;
 };
 
-// Examples we parse:
-//   "₹18–28L / yr"      → { min: 1_800_000, max: 2_800_000, trailing: " / yr" }
+// Examples we parse (units may differ per bound, e.g. London rent ranges):
+//   "₹18–28L / yr"          → both 1.8M / 2.8M
 //   "₹6–14L / yr"
 //   "₹2.5–4L / year"
-//   "₹35–55K / year"     (K = thousands)
-//   "₹40–60K / year"
+//   "₹35–55K / year"         (K = thousands)
+//   "₹70K–1.0L / month"      (mixed K-L — each bound has its own unit)
 //   "₹0–4L / year"
-//   "₹18L"               (single value, no range)
+//   "₹18L"                   (single value, no range)
 //   "₹1.5–2.5L / year"
 //
 // Returns null if we don't recognise the shape — in which case the caller
@@ -59,15 +59,28 @@ type ParsedRange = {
 export function parseINRRangeString(s: string): ParsedRange | null {
   // Normalise dashes
   const normalised = s.replace(/[–—‒−]/g, "-");
-  // Match optional ₹, number, optional "-number", L or K, optional trailing text
+  // Capture optional unit after EACH bound so mixed-unit ranges (K..L) work.
   const match = normalised.match(
-    /₹\s*(\d+(?:\.\d+)?)(?:\s*-\s*(\d+(?:\.\d+)?))?\s*([LK])(.*)$/i,
+    /₹\s*(\d+(?:\.\d+)?)\s*([LK])?\s*(?:-\s*(\d+(?:\.\d+)?)\s*([LK])?)?\s*(.*)$/i,
   );
   if (!match) return null;
-  const [, minStr, maxStr, unit, trailing] = match;
-  const unitMultiplier = unit.toUpperCase() === "L" ? 100_000 : 1_000;
-  const min = parseFloat(minStr) * unitMultiplier;
-  const max = (maxStr ? parseFloat(maxStr) : parseFloat(minStr)) * unitMultiplier;
+  const [, minStr, minUnitRaw, maxStr, maxUnitRaw, trailing] = match;
+
+  // Unit resolution: if only one side specifies a unit, the other inherits it.
+  // If neither does, default to L (most common in our cost data).
+  const minUnit = (minUnitRaw ?? maxUnitRaw ?? "L").toUpperCase();
+  const maxUnit = (maxUnitRaw ?? minUnitRaw ?? "L").toUpperCase();
+  if ((minUnit !== "L" && minUnit !== "K") || (maxUnit !== "L" && maxUnit !== "K")) {
+    return null;
+  }
+
+  // We need at least *something* recognisably L/K or we're probably not looking
+  // at a cost string at all.
+  if (!minUnitRaw && !maxUnitRaw) return null;
+
+  const unitMul = (u: string) => (u === "L" ? 100_000 : 1_000);
+  const min = parseFloat(minStr) * unitMul(minUnit);
+  const max = maxStr ? parseFloat(maxStr) * unitMul(maxUnit) : min;
   return { minINR: min, maxINR: max, trailing: trailing || "" };
 }
 

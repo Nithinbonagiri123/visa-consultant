@@ -252,6 +252,7 @@ export function parseProgrammeSlug(slug: string): ProgrammeRoute | null {
   if (idx === -1) return null;
   const programmeSlug = slug.slice(0, idx);
   const countrySlug = slug.slice(idx + 4);
+  if (!programmeSlug || !countrySlug) return null;
   return { programmeSlug, countrySlug };
 }
 

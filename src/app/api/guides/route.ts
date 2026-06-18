@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getGuide } from "@/lib/guides-data";
 import { forwardWebhook } from "@/lib/webhook-forward";
+import { sanitiseRefererForSheet } from "@/lib/sanitise";
 
 // Captures a lead for a specific guide download. Fans out to the leads sheet
 // (so you can see every download) and to the drip platform (which is what
@@ -10,8 +11,12 @@ import { forwardWebhook } from "@/lib/webhook-forward";
 export const runtime = "nodejs";
 
 const schema = z.object({
-  email: z.string().trim().email("Please enter a valid email"),
-  guideSlug: z.string().trim().min(1),
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email")
+    .max(254, "Email is too long"),
+  guideSlug: z.string().trim().min(1).max(80),
 });
 
 export async function POST(req: Request) {
@@ -42,7 +47,7 @@ export async function POST(req: Request) {
     guideTitle: guide.title,
     tags: ["guide-downloaded", ...guide.tags],
     submittedAt: new Date().toISOString(),
-    source: req.headers.get("referer") ?? "direct",
+    source: sanitiseRefererForSheet(req.headers.get("referer")),
   };
 
   const [sheetResult] = await Promise.all([

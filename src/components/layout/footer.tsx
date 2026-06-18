@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site, navLinks, destinations } from "@/lib/site";
+import { site, navLinks } from "@/lib/site";
 import { Container } from "@/components/ui/container";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 
@@ -7,9 +7,17 @@ const toolLinks = [
   { label: "Destination Finder", href: "/find-your-destination" },
   { label: "Visa Eligibility", href: "/visa-eligibility" },
   { label: "EMI Calculator", href: "/loan-emi-calculator" },
+  { label: "Admit Probability", href: "/admit-probability" },
   { label: "Scholarship Match", href: "/scholarships" },
-  { label: "Compare Countries", href: "/compare" },
+  { label: "Country Comparator", href: "/compare" },
+] as const;
+
+const resourceLinks = [
+  { label: "Blog", href: "/blog" },
+  { label: "Free Guides", href: "/guides" },
   { label: "Glossary", href: "/glossary" },
+  { label: "Counsellors", href: "/counsellors" },
+  { label: "FAQ", href: "/faq" },
 ] as const;
 
 export function Footer() {
@@ -75,18 +83,18 @@ export function Footer() {
             ))}
           </FooterCol>
 
-          <FooterCol title="Destinations">
-            {destinations.slice(0, 6).map((d) => (
-              <FooterLink key={d.slug} href={`/study-in-${d.slug}`}>
-                Study in {d.country}
-              </FooterLink>
-            ))}
-          </FooterCol>
-
           <FooterCol title="Tools">
             {toolLinks.map((t) => (
               <FooterLink key={t.href} href={t.href}>
                 {t.label}
+              </FooterLink>
+            ))}
+          </FooterCol>
+
+          <FooterCol title="Resources">
+            {resourceLinks.map((r) => (
+              <FooterLink key={r.href} href={r.href}>
+                {r.label}
               </FooterLink>
             ))}
           </FooterCol>
@@ -95,8 +103,10 @@ export function Footer() {
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-navy-300 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <div className="flex items-center gap-5">
-            <Link href="#" className="hover:text-white">Privacy</Link>
-            <Link href="#" className="hover:text-white">Terms</Link>
+            {/* Privacy + Terms pages aren't built yet; show as muted text so we
+                don't ship dead `href="#"` anchors that scroll to top. */}
+            <span className="text-navy-400">Privacy</span>
+            <span className="text-navy-400">Terms</span>
             <Link href="/sitemap.xml" className="hover:text-white">Sitemap</Link>
           </div>
         </div>

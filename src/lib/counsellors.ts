@@ -24,8 +24,8 @@ export type Counsellor = {
 
 export const counsellors: Counsellor[] = [
   {
-    slug: "arun kumar",
-    name: "Arun kumar",
+    slug: "arun-kumar",
+    name: "Arun Kumar",
     role: "Founder & Principal Counsellor",
     shortBio:
       "Twelve years guiding Indian students into global universities — and the reason Campus Meridian exists.",

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { leadSchema } from "@/lib/lead-schema";
 import { forwardWebhook } from "@/lib/webhook-forward";
+import { sanitiseRefererForSheet } from "@/lib/sanitise";
 
 // Submissions fan out to two webhooks:
 //   1. GOOGLE_SHEETS_WEBHOOK_URL  → appends a row to the Campus Meridian leads
@@ -43,7 +44,7 @@ export async function POST(req: Request) {
     ...data,
     tags,
     submittedAt: new Date().toISOString(),
-    source: req.headers.get("referer") ?? "direct",
+    source: sanitiseRefererForSheet(req.headers.get("referer")),
   };
 
   // Sheet write is the source of truth — if it fails, return 502 so the

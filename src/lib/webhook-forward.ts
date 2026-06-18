@@ -7,13 +7,21 @@ export type ForwardResult =
   | { ok: true; queued: false; reason: "no-url" }
   | { ok: false; status: number; reason: string };
 
+const isDev = process.env.NODE_ENV !== "production";
+
 export async function forwardWebhook(
   url: string | undefined,
   payload: unknown,
   name: string,
 ): Promise<ForwardResult> {
   if (!url) {
-    console.warn(`[${name}] webhook URL not set — logging:`, payload);
+    // In production, never log the full payload — it contains lead PII
+    // (name, phone, email). Just record that fan-out was skipped.
+    if (isDev) {
+      console.warn(`[${name}] webhook URL not set — logging:`, payload);
+    } else {
+      console.warn(`[${name}] webhook URL not set — skipping fan-out`);
+    }
     return { ok: true, queued: false, reason: "no-url" };
   }
   try {

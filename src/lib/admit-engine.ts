@@ -59,8 +59,10 @@ function scoreUniversity(u: University, a: AdmitInputs): AdmitMatch {
   }
 
   // --- IELTS (up to +/-15) -------------------------------------------------
-  if (a.ieltsBand === 0) {
-    gaps.push(`IELTS not yet taken — target ${t.minIELTS}+`);
+  // Any band below 5.5 is treated as "not yet at a useful level" — the slider
+  // allows sub-5.5 values but they're effectively the same as "not taken".
+  if (a.ieltsBand < 5.5) {
+    gaps.push(`IELTS not yet at the ${t.minIELTS}+ target`);
   } else {
     const ieltsDelta = a.ieltsBand - t.minIELTS;
     if (ieltsDelta >= 1) {

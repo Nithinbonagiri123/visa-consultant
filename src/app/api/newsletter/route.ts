@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { forwardWebhook } from "@/lib/webhook-forward";
+import { sanitiseRefererForSheet } from "@/lib/sanitise";
 
 // Newsletter signups fan out to the leads sheet (under a tagged row) and to
 // the drip platform, tagged "newsletter" so the drip system starts the
@@ -9,7 +10,11 @@ import { forwardWebhook } from "@/lib/webhook-forward";
 export const runtime = "nodejs";
 
 const schema = z.object({
-  email: z.string().trim().email("Please enter a valid email"),
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email")
+    .max(254, "Email is too long"),
 });
 
 export async function POST(req: Request) {
@@ -33,7 +38,7 @@ export async function POST(req: Request) {
     email: parsed.data.email,
     tags: ["newsletter"],
     submittedAt: new Date().toISOString(),
-    source: req.headers.get("referer") ?? "direct",
+    source: sanitiseRefererForSheet(req.headers.get("referer")),
   };
 
   const [sheetResult] = await Promise.all([

@@ -1,14 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
-import { useRef } from "react";
 
-export function useCountUp(target: number, duration = 1.6) {
+// Animates a number from 0 → target the first time it scrolls into view.
+// The animation feel is tuned by the spring config below; pass a custom
+// spring if you need to override.
+export function useCountUp(
+  target: number,
+  spring: { stiffness?: number; damping?: number; mass?: number } = {},
+) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
   const mv = useMotionValue(0);
-  const spring = useSpring(mv, { stiffness: 80, damping: 22, mass: 0.6 });
+  const animated = useSpring(mv, {
+    stiffness: spring.stiffness ?? 80,
+    damping: spring.damping ?? 22,
+    mass: spring.mass ?? 0.6,
+  });
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -16,13 +25,9 @@ export function useCountUp(target: number, duration = 1.6) {
   }, [inView, mv, target]);
 
   useEffect(() => {
-    const unsub = spring.on("change", (v) => setValue(v));
+    const unsub = animated.on("change", (v) => setValue(v));
     return () => unsub();
-  }, [spring]);
-
-  useEffect(() => {
-    void duration;
-  }, [duration]);
+  }, [animated]);
 
   return { ref, value: Math.round(value) };
 }

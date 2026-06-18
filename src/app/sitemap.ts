@@ -30,12 +30,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${site.url}/admit-probability`,      lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/glossary`,               lastModified: now, changeFrequency: "yearly",  priority: 0.7 },
 
-    // Section landings
-    { url: `${site.url}/programmes`,   lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/universities`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/counsellors`,  lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${site.url}/guides`,       lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${site.url}/blog`,         lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
+    // Section landings (mirrored in top navbar)
+    { url: `${site.url}/destinations`,  lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/universities`,  lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/programmes`,    lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/services`,      lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/how-it-works`,  lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/stories`,       lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${site.url}/tools`,         lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/resources`,     lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${site.url}/counsellors`,   lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${site.url}/guides`,        lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/blog`,          lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${site.url}/faq`,           lastModified: now, changeFrequency: "monthly", priority: 0.7 },
 
     // Destinations
     ...destinations.map((d) => ({

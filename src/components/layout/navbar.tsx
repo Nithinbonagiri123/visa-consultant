@@ -42,22 +42,22 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 xl:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50 hover:text-navy-900"
+              className="whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-medium text-navy-700 transition-colors hover:bg-navy-50 hover:text-navy-900"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <CurrencySwitcher />
           <a
-            href="#enquire"
+            href="/#enquire"
             className={buttonVariants({ size: "sm", variant: "gold" })}
           >
             Book Consultation
@@ -67,7 +67,7 @@ export function Navbar() {
         <button
           aria-label="Open menu"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-navy-100 bg-white text-navy-900 lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-navy-100 bg-white text-navy-900 xl:hidden"
         >
           {open ? <X size={18} /> : <Menu size={18} />}
         </button>
@@ -80,7 +80,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="absolute inset-x-4 top-20 rounded-3xl border border-navy-100 bg-white p-4 shadow-elevated lg:hidden"
+            className="absolute inset-x-4 top-20 rounded-3xl border border-navy-100 bg-white p-4 shadow-elevated xl:hidden"
           >
             <nav className="flex flex-col">
               {navLinks.map((link) => (
@@ -100,7 +100,7 @@ export function Navbar() {
                 <CurrencySwitcher align="left" />
               </div>
               <a
-                href="#enquire"
+                href="/#enquire"
                 onClick={() => setOpen(false)}
                 className="mt-2 inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-500 text-sm font-medium text-navy-900"
               >

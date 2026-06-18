@@ -102,9 +102,9 @@ export function AdmitCalculator() {
             <Slider
               label="IELTS band"
               displayValue={
-                ieltsBand === 0 ? "Not taken" : ieltsBand.toFixed(1)
+                ieltsBand < 5.5 ? "Not taken / below 5.5" : ieltsBand.toFixed(1)
               }
-              min={0}
+              min={5}
               max={9}
               step={0.5}
               value={ieltsBand}

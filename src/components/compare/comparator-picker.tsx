@@ -11,14 +11,16 @@ import { cn } from "@/lib/utils";
 import { destinations } from "@/lib/site";
 import { buildComparisonPairSlug } from "@/lib/comparator";
 
-const MAX = 3;
+// Only 2-country pairs are prerendered; the picker enforces that here.
+const MAX = 2;
 
 export function ComparatorPicker() {
   const [selected, setSelected] = useState<string[]>([]);
 
   const compareHref = useMemo(() => {
-    if (selected.length === 2) return `/compare/${buildComparisonPairSlug(selected[0], selected[1])}`;
-    if (selected.length === 3) return `/compare/${selected.sort().join("-vs-")}`;
+    if (selected.length === 2) {
+      return `/compare/${buildComparisonPairSlug(selected[0], selected[1])}`;
+    }
     return null;
   }, [selected]);
 
@@ -83,7 +85,7 @@ export function ComparatorPicker() {
         </div>
 
         <AnimatePresence>
-          {selected.length >= 2 && compareHref && (
+          {selected.length === 2 && compareHref && (
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,7 +97,7 @@ export function ComparatorPicker() {
                 href={compareHref}
                 className={buttonVariants({ variant: "gold", size: "xl" })}
               >
-                Compare {selected.length} countries <ArrowRight size={18} />
+                Compare these countries <ArrowRight size={18} />
               </Link>
               <button
                 type="button"
@@ -110,7 +112,7 @@ export function ComparatorPicker() {
 
         {selected.length < 2 && (
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Pick 2 or 3 countries to compare.
+            Pick 2 countries to compare side-by-side.
           </p>
         )}
       </div>

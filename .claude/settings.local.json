@@ -53,7 +53,11 @@
       "Bash(curl -s http://localhost:3000/compare-programmes/ms-computer-science-vs-ms-data-science -o /tmp/csds.html)",
       "Bash(curl -s http://localhost:3000/admit-probability -o /tmp/admit.html)",
       "Bash(curl -s http://localhost:3000/guides/canada-study-guide-2026 -o /tmp/guide.html)",
-      "WebFetch(domain:21st.dev)"
+      "WebFetch(domain:21st.dev)",
+      "Bash(curl -sL \"https://21st.dev/r/aayush-duhan/ink-reveal\" -H \"Accept: application/json\")",
+      "Bash(curl -s http://localhost:3000/blog/best-countries-to-study-abroad-2026)",
+      "Bash(curl -s -X POST -H \"Content-Type: application/json\" -H \"Origin: http://localhost:3000\" -d '{\"email\":\"test@example.com\"}' http://localhost:3000/api/newsletter)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" -X POST -H \"Content-Type: application/json\" -H \"Origin: http://localhost:3000\" -d '{\"email\":\"a@b.com\"}' http://localhost:3000/api/newsletter)"
     ]
   }
 }

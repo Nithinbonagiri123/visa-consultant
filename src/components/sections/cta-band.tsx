@@ -34,12 +34,12 @@ export function CTABand() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a href="#enquire" className={buttonVariants({ variant: "gold", size: "xl" })}>
+              <a href="/#enquire" className={buttonVariants({ variant: "gold", size: "xl" })}>
                 Book free consultation
                 <ArrowRight size={18} />
               </a>
               <a
-                href="#destinations"
+                href="/#destinations"
                 className={buttonVariants({ variant: "outline", size: "xl", className: "border-white/20 bg-white/10 text-white hover:bg-white/15 hover:border-white/40" })}
               >
                 Explore destinations

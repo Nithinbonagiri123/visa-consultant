@@ -43,7 +43,24 @@ export function parseComparisonPairSlug(
 ): { a: string; b: string } | null {
   const idx = slug.indexOf("-vs-");
   if (idx === -1) return null;
-  return { a: slug.slice(0, idx), b: slug.slice(idx + 4) };
+  const a = slug.slice(0, idx);
+  const b = slug.slice(idx + 4);
+  // Reject 3+ country slugs (`a-vs-b-vs-c`) — only pairs are supported.
+  if (!a || !b || b.includes("-vs-")) return null;
+  return { a, b };
+}
+
+/** All C(N,2) country pair combinations as canonical slugs. Used to drive
+    generateStaticParams so any pair the picker can produce is prerendered. */
+export function getAllComparisonPairSlugs(): string[] {
+  const slugs = destinations.map((d) => d.slug);
+  const pairs: string[] = [];
+  for (let i = 0; i < slugs.length; i++) {
+    for (let j = i + 1; j < slugs.length; j++) {
+      pairs.push(buildComparisonPairSlug(slugs[i], slugs[j]));
+    }
+  }
+  return pairs;
 }
 
 export function getDestination(slug: string): Destination | undefined {

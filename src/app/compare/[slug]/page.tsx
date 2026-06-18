@@ -8,7 +8,7 @@ import { OrganizationJsonLd } from "@/components/seo/jsonld";
 import { ComparisonTable } from "@/components/compare/comparison-table";
 import {
   SUPPORTED_PAIRS,
-  buildComparisonPairSlug,
+  getAllComparisonPairSlugs,
   parseComparisonPairSlug,
   getDestination,
 } from "@/lib/comparator";
@@ -17,9 +17,8 @@ import { site } from "@/lib/site";
 type Params = { slug: string };
 
 export async function generateStaticParams(): Promise<Params[]> {
-  return SUPPORTED_PAIRS.map((p) => ({
-    slug: buildComparisonPairSlug(p.a, p.b),
-  }));
+  // Prerender every C(N,2) pair so any combo the picker can produce resolves.
+  return getAllComparisonPairSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
