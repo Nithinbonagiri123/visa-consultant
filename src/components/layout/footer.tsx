@@ -22,18 +22,18 @@ const resourceLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative mt-32 overflow-hidden bg-navy-950 text-navy-100">
+    <footer className="relative mt-20 overflow-hidden bg-navy-950 text-navy-100 sm:mt-32">
       <div className="absolute inset-0 bg-grid opacity-[0.04]" />
       <div className="absolute -top-40 left-1/2 h-80 w-[120%] -translate-x-1/2 rounded-[100%] bg-royal-500/20 blur-3xl" />
 
-      <Container className="relative py-20">
+      <Container className="relative py-12 sm:py-20">
         {/* Newsletter band */}
-        <div className="grid gap-8 border-b border-white/10 pb-12 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+        <div className="grid gap-6 border-b border-white/10 pb-8 sm:gap-8 sm:pb-12 lg:grid-cols-[1.2fr_1fr] lg:items-end">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-300 sm:text-xs sm:tracking-[0.2em]">
               Newsletter
             </p>
-            <h3 className="mt-3 max-w-xl font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
+            <h3 className="mt-3 max-w-xl font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
               One short email a fortnight. Country updates, scholarship deadlines, intake reminders.
             </h3>
           </div>
@@ -41,7 +41,7 @@ export function Footer() {
         </div>
 
         {/* Columns */}
-        <div className="grid gap-12 pt-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 pt-10 sm:gap-12 sm:pt-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             <div className="flex items-center gap-2">
               <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-gold-300 to-gold-500 text-navy-900">
@@ -100,7 +100,7 @@ export function Footer() {
           </FooterCol>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-navy-300 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-navy-300 sm:mt-16 sm:pt-8 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <div className="flex items-center gap-5">
             {/* Privacy + Terms pages aren't built yet; show as muted text so we

@@ -65,16 +65,16 @@ export function EMICalculator() {
   );
 
   return (
-    <Container className="pb-24">
-      <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+    <Container className="pb-16 sm:pb-24">
+      <div className="grid gap-5 sm:gap-6 lg:grid-cols-[1fr_1.1fr]">
         {/* LEFT — inputs */}
-        <div className="rounded-[2rem] border border-navy-100 bg-white p-8 shadow-elevated">
+        <div className="rounded-[1.5rem] border border-navy-100 bg-white p-5 shadow-elevated sm:rounded-[2rem] sm:p-8">
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-navy-900 text-gold-300">
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-navy-900 text-gold-300 sm:h-11 sm:w-11 sm:rounded-2xl">
               <Calculator size={20} />
             </span>
             <div>
-              <p className="font-display text-xl font-semibold tracking-tight text-navy-900">
+              <p className="font-display text-lg font-semibold tracking-tight text-navy-900 sm:text-xl">
                 Adjust your loan
               </p>
               <p className="text-xs text-muted-foreground">
@@ -83,7 +83,7 @@ export function EMICalculator() {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col gap-7">
+          <div className="mt-6 flex flex-col gap-6 sm:mt-8 sm:gap-7">
             <Slider
               label="Loan amount"
               value={principal}
@@ -121,29 +121,29 @@ export function EMICalculator() {
         </div>
 
         {/* RIGHT — output */}
-        <div className="relative overflow-hidden rounded-[2rem] border border-navy-100 bg-gradient-to-br from-navy-900 via-navy-800 to-royal-600 p-8 text-white shadow-elevated">
+        <div className="relative overflow-hidden rounded-[1.5rem] border border-navy-100 bg-gradient-to-br from-navy-900 via-navy-800 to-royal-600 p-5 text-white shadow-elevated sm:rounded-[2rem] sm:p-8">
           <div className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-gold-400/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-20 -left-16 h-72 w-72 rounded-full bg-royal-500/30 blur-3xl" />
 
-          <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
+          <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-10">
             <DonutChart
               principal={principal * 1e5}
               interest={result.totalInterest}
             />
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-300">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-300 sm:text-[11px] sm:tracking-[0.18em]">
                 Monthly EMI
               </p>
-              <p className="mt-1 font-display text-5xl font-semibold leading-none tracking-tight text-white">
+              <p className="mt-1 font-display text-[2.25rem] font-semibold leading-none tracking-tight text-white sm:text-5xl">
                 {formatINRWhole(result.emi)}
               </p>
-              <p className="mt-2 text-sm text-navy-200">
+              <p className="mt-2 text-[13px] text-navy-200 sm:text-sm">
                 for {tenure} {tenure === 1 ? "year" : "years"} at {rate.toFixed(1)}%
               </p>
             </div>
           </div>
 
-          <dl className="relative mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-8">
+          <dl className="relative mt-7 grid grid-cols-3 gap-2 border-t border-white/10 pt-6 sm:mt-10 sm:gap-4 sm:pt-8">
             <Stat
               label="Principal"
               value={formatINR(principal * 1e5)}
@@ -160,7 +160,7 @@ export function EMICalculator() {
             />
           </dl>
 
-          <div className="relative mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="relative mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
             <Link
               href="/#enquire"
               className={cn(
@@ -264,11 +264,11 @@ function Slider({
 function Stat({ label, value, dot }: { label: string; value: string; dot?: string }) {
   return (
     <div>
-      <dt className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-300">
-        {dot && <span className={cn("h-2 w-2 rounded-full", dot)} />}
+      <dt className="flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-gold-300 sm:gap-2 sm:text-[10px] sm:tracking-[0.16em]">
+        {dot && <span className={cn("h-1.5 w-1.5 rounded-full sm:h-2 sm:w-2", dot)} />}
         {label}
       </dt>
-      <dd className="mt-1 font-display text-lg font-semibold text-white">
+      <dd className="mt-1 font-display text-[13px] font-semibold text-white sm:text-lg">
         {value}
       </dd>
     </div>
@@ -284,8 +284,8 @@ function DonutChart({ principal, interest }: { principal: number; interest: numb
   const offset = c - interestPct * c;
 
   return (
-    <div className="relative grid h-44 w-44 shrink-0 place-items-center">
-      <svg width="176" height="176" viewBox="0 0 176 176" className="absolute inset-0">
+    <div className="relative grid h-36 w-36 shrink-0 place-items-center sm:h-44 sm:w-44">
+      <svg viewBox="0 0 176 176" className="absolute inset-0 h-full w-full">
         <circle
           cx="88"
           cy="88"

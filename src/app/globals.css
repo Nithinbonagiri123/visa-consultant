@@ -79,6 +79,19 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "cv11", "ss01", "ss03";
+  /* Clear the mobile bottom CTA bar (88-100px including safe area). */
+  padding-bottom: calc(96px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* Don't allow children to push width past viewport on mobile. */
+html, body {
+  overflow-x: hidden;
 }
 
 .font-display {

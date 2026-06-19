@@ -101,13 +101,13 @@ export function DestinationFinder() {
   }
 
   return (
-    <Container className="pb-24">
-      <div className="relative mx-auto max-w-3xl overflow-hidden rounded-[2rem] border border-navy-100 bg-white shadow-elevated">
+    <Container className="pb-16 sm:pb-24">
+      <div className="relative mx-auto max-w-3xl overflow-hidden rounded-[1.5rem] border border-navy-100 bg-white shadow-elevated sm:rounded-[2rem]">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
         <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gold-400/10 blur-3xl" />
         <div className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-royal-500/10 blur-3xl" />
 
-        <div className="relative p-6 sm:p-10">
+        <div className="relative p-5 sm:p-10">
           <ProgressBar percent={progress} />
 
           <AnimatePresence mode="wait">
@@ -164,12 +164,12 @@ export function DestinationFinder() {
                   )}
                 </div>
 
-                <div className="mt-10 flex items-center justify-between">
+                <div className="mt-8 flex items-center justify-between gap-3 sm:mt-10">
                   <button
                     type="button"
                     onClick={() => setStepIdx((i) => Math.max(0, i - 1))}
                     disabled={stepIdx === 0}
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50 disabled:cursor-not-allowed disabled:opacity-40"
+                    className="inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4"
                   >
                     <ArrowLeft size={16} /> Back
                   </button>
@@ -232,18 +232,19 @@ function StepHeader({
 }) {
   const Icon = step.icon;
   return (
-    <div className="flex items-start gap-4">
-      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-navy-900 text-gold-300">
-        <Icon size={20} />
+    <div className="flex items-start gap-3 sm:gap-4">
+      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-navy-900 text-gold-300 sm:h-12 sm:w-12 sm:rounded-2xl">
+        <Icon size={18} className="sm:hidden" />
+        <Icon size={20} className="hidden sm:block" />
       </div>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy-500">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500 sm:text-xs sm:tracking-[0.18em]">
           Step {index + 1} of {total}
         </p>
-        <h2 className="mt-1 font-display text-3xl font-semibold leading-tight tracking-tight text-navy-900">
+        <h2 className="mt-1 font-display text-xl font-semibold leading-tight tracking-tight text-navy-900 sm:text-3xl">
           {step.title}
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground">{step.subtitle}</p>
+        <p className="mt-1 text-[13px] text-muted-foreground sm:text-sm">{step.subtitle}</p>
       </div>
     </div>
   );
@@ -381,24 +382,25 @@ function Results({
 
   return (
     <div>
-      <div className="flex items-start gap-4">
-        <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-300 to-gold-500 text-navy-900">
-          <Sparkles size={20} />
+      <div className="flex items-start gap-3 sm:gap-4">
+        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-gold-300 to-gold-500 text-navy-900 sm:h-12 sm:w-12 sm:rounded-2xl">
+          <Sparkles size={18} className="sm:hidden" />
+          <Sparkles size={20} className="hidden sm:block" />
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-500">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-500 sm:text-xs sm:tracking-[0.18em]">
             Your matches
           </p>
-          <h2 className="mt-1 font-display text-3xl font-semibold leading-tight tracking-tight text-navy-900">
+          <h2 className="mt-1 font-display text-xl font-semibold leading-tight tracking-tight text-navy-900 sm:text-3xl">
             Here&apos;s where you fit best.
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-[13px] text-muted-foreground sm:text-sm">
             Based on your budget, field, priorities, and English readiness.
           </p>
         </div>
       </div>
 
-      <ol className="mt-10 flex flex-col gap-4">
+      <ol className="mt-8 flex flex-col gap-3 sm:mt-10 sm:gap-4">
         {top.map((m, i) => (
           <ResultCard key={m.slug} match={m} rank={i + 1} prominent />
         ))}
@@ -438,14 +440,14 @@ function Results({
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <Link
           href="/#enquire"
-          className={buttonVariants({ variant: "primary", size: "lg" })}
+          className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
         >
           Discuss with a counsellor <ArrowRight size={18} />
         </Link>
         <button
           type="button"
           onClick={onReset}
-          className={buttonVariants({ variant: "outline", size: "lg" })}
+          className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
         >
           <RefreshCw size={16} /> Restart finder
         </button>
@@ -472,16 +474,16 @@ function ResultCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, delay: rank * 0.06, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        "relative overflow-hidden rounded-3xl border bg-white p-6 transition-shadow",
+        "relative overflow-hidden rounded-2xl border bg-white p-4 transition-shadow sm:rounded-3xl sm:p-6",
         prominent ? "border-navy-100 shadow-elevated" : "border-navy-100",
       )}
     >
       {prominent && rank === 1 && (
         <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-gold-300/30 to-royal-500/20 blur-2xl" />
       )}
-      <div className="relative flex items-start gap-5">
-        <div className="grid shrink-0 place-items-center rounded-2xl bg-navy-50 text-navy-900 sm:h-16 sm:w-16">
-          <span className="text-3xl sm:text-4xl">{dest.flag}</span>
+      <div className="relative flex items-start gap-3 sm:gap-5">
+        <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-50 text-navy-900 sm:h-16 sm:w-16 sm:rounded-2xl">
+          <span className="text-2xl sm:text-4xl">{dest.flag}</span>
         </div>
 
         <div className="flex-1">

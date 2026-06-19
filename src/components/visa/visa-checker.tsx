@@ -124,12 +124,12 @@ export function VisaChecker({ initialCountry }: { initialCountry?: string }) {
   }
 
   return (
-    <Container className="pb-24">
-      <div className="relative mx-auto max-w-3xl overflow-hidden rounded-[2rem] border border-navy-100 bg-white shadow-elevated">
+    <Container className="pb-16 sm:pb-24">
+      <div className="relative mx-auto max-w-3xl overflow-hidden rounded-[1.5rem] border border-navy-100 bg-white shadow-elevated sm:rounded-[2rem]">
         <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-royal-500/10 blur-3xl" />
         <div className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-gold-400/10 blur-3xl" />
 
-        <div className="relative p-6 sm:p-10">
+        <div className="relative p-5 sm:p-10">
           <ProgressBar percent={progress} />
 
           <AnimatePresence mode="wait">
@@ -196,14 +196,14 @@ export function VisaChecker({ initialCountry }: { initialCountry?: string }) {
                   )}
                 </div>
 
-                <div className="mt-10 flex items-center justify-between">
+                <div className="mt-8 flex items-center justify-between gap-3 sm:mt-10">
                   <button
                     type="button"
                     onClick={() =>
                       setStepIdx((i) => Math.max(initialCountry ? 1 : 0, i - 1))
                     }
                     disabled={stepIdx <= (initialCountry ? 1 : 0)}
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50 disabled:cursor-not-allowed disabled:opacity-40"
+                    className="inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4"
                   >
                     <ArrowLeft size={16} /> Back
                   </button>
@@ -266,18 +266,19 @@ function StepHeader({
 }) {
   const Icon = step.icon;
   return (
-    <div className="flex items-start gap-4">
-      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-navy-900 text-gold-300">
-        <Icon size={20} />
+    <div className="flex items-start gap-3 sm:gap-4">
+      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-navy-900 text-gold-300 sm:h-12 sm:w-12 sm:rounded-2xl">
+        <Icon size={18} className="sm:hidden" />
+        <Icon size={20} className="hidden sm:block" />
       </div>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy-500">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500 sm:text-xs sm:tracking-[0.18em]">
           Step {index + 1} of {total}
         </p>
-        <h2 className="mt-1 font-display text-3xl font-semibold leading-tight tracking-tight text-navy-900">
+        <h2 className="mt-1 font-display text-xl font-semibold leading-tight tracking-tight text-navy-900 sm:text-3xl">
           {step.title}
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground">{step.subtitle}</p>
+        <p className="mt-1 text-[13px] text-muted-foreground sm:text-sm">{step.subtitle}</p>
       </div>
     </div>
   );
@@ -291,7 +292,7 @@ function CountryGrid({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
       {destinations.map((d) => {
         const active = value === d.slug;
         return (
@@ -300,13 +301,13 @@ function CountryGrid({
             type="button"
             onClick={() => onChange(d.slug)}
             className={cn(
-              "flex items-center gap-3 rounded-2xl border px-5 py-4 text-left text-sm font-medium transition-all duration-200",
+              "flex items-center gap-2 rounded-xl border px-3 py-3 text-left text-[13px] font-medium transition-all duration-200 sm:gap-3 sm:rounded-2xl sm:px-5 sm:py-4 sm:text-sm",
               active
                 ? "border-navy-900 bg-navy-900 text-white shadow-elevated"
                 : "border-navy-100 bg-white text-navy-900 hover:border-navy-300 hover:bg-navy-50",
             )}
           >
-            <span className="text-2xl leading-none">{d.flag}</span>
+            <span className="text-xl leading-none sm:text-2xl">{d.flag}</span>
             <span>{d.country}</span>
           </button>
         );
@@ -418,16 +419,16 @@ function Result({
 
   return (
     <div>
-      <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+      <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
         <ScoreRing score={result.score} band={result.band} />
         <div>
-          <p className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-300">
+          <p className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-300 sm:text-[11px] sm:tracking-[0.16em]">
             <Sparkles size={12} /> {result.bandLabel}
           </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight text-navy-900">
+          <h2 className="mt-3 font-display text-xl font-semibold leading-tight tracking-tight text-navy-900 sm:text-3xl">
             {dest?.flag} {dest?.country} · {profile?.visaType}
           </h2>
-          <p className="mt-2 max-w-xl text-sm text-muted-foreground">
+          <p className="mt-2 max-w-xl text-[13px] text-muted-foreground sm:text-sm">
             {result.bandBlurb}
           </p>
         </div>
@@ -498,17 +499,17 @@ function Result({
         />
       </div>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Link
           href="/#enquire"
-          className={buttonVariants({ variant: "primary", size: "lg" })}
+          className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
         >
           Build a plan with a counsellor <ArrowRight size={18} />
         </Link>
         {dest && (
           <Link
             href={`/study-in-${dest.slug}`}
-            className={buttonVariants({ variant: "outline", size: "lg" })}
+            className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
           >
             See Study in {dest.country}
           </Link>
@@ -516,7 +517,7 @@ function Result({
         <button
           type="button"
           onClick={onReset}
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50"
+          className="inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50"
         >
           <RefreshCw size={14} /> Reset
         </button>

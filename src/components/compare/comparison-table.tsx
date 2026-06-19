@@ -16,23 +16,26 @@ export function ComparisonTable({ slugs }: { slugs: string[] }) {
   const { countries, rows } = buildComparison(slugs);
 
   return (
-    <Container className="pb-24">
-      <div className="overflow-x-auto rounded-[2rem] border border-navy-100 bg-white shadow-elevated">
+    <Container className="pb-16 sm:pb-24">
+      <p className="mb-2 text-[11px] font-medium text-navy-500 sm:hidden">
+        ← Swipe table to compare →
+      </p>
+      <div className="overflow-x-auto rounded-2xl border border-navy-100 bg-white shadow-elevated sm:rounded-[2rem]">
         <table className="w-full min-w-[640px] divide-y divide-navy-100 text-sm">
           <thead className="bg-surface-muted">
             <tr>
-              <th className="w-56 px-6 py-5 text-left text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-500" />
+              <th className="w-40 px-4 py-4 text-left text-[10px] font-semibold uppercase tracking-[0.14em] text-navy-500 sm:w-56 sm:px-6 sm:py-5 sm:text-[11px] sm:tracking-[0.16em]" />
               {countries.map((c) => (
-                <th key={c.slug} className="px-6 py-5 text-left">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl leading-none">{c.flag}</span>
+                <th key={c.slug} className="px-4 py-4 text-left sm:px-6 sm:py-5">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-2xl leading-none sm:text-3xl">{c.flag}</span>
                     <div>
-                      <p className="font-display text-lg font-semibold tracking-tight text-navy-900">
+                      <p className="font-display text-base font-semibold tracking-tight text-navy-900 sm:text-lg">
                         {c.country}
                       </p>
                       <Link
                         href={`/study-in-${c.slug}`}
-                        className="text-xs text-royal-600 hover:underline"
+                        className="text-[11px] text-royal-600 hover:underline sm:text-xs"
                       >
                         Country guide →
                       </Link>
@@ -74,20 +77,20 @@ function GroupRows({
       <tr className="bg-surface-muted/40">
         <td
           colSpan={1 + countries.length}
-          className="px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-500"
+          className="px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-500 sm:px-6 sm:py-3 sm:text-[11px] sm:tracking-[0.18em]"
         >
           {group}
         </td>
       </tr>
       {rows.map((r) => (
         <tr key={r.label}>
-          <td className="px-6 py-5 align-top text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-700">
+          <td className="px-4 py-4 align-top text-[10px] font-semibold uppercase tracking-[0.12em] text-navy-700 sm:px-6 sm:py-5 sm:text-[11px] sm:tracking-[0.14em]">
             {r.label}
           </td>
           {r.values.map((v, i) => (
             <td
               key={i}
-              className="px-6 py-5 align-top text-sm leading-relaxed text-navy-800"
+              className="px-4 py-4 align-top text-[13px] leading-relaxed text-navy-800 sm:px-6 sm:py-5 sm:text-sm"
             >
               {r.isCost && v !== "—" ? <Cost inr={v} /> : v}
             </td>
@@ -100,16 +103,16 @@ function GroupRows({
 
 function CtaRow({ countries }: { countries: CountrySnapshot[] }) {
   return (
-    <div className="mt-10 grid gap-3 sm:grid-cols-2">
+    <div className="mt-6 grid gap-3 sm:mt-10 sm:grid-cols-2">
       <Link
         href="/#enquire"
-        className={buttonVariants({ variant: "primary", size: "lg" })}
+        className={buttonVariants({ variant: "primary", size: "lg", className: "w-full" })}
       >
         Get a personal shortlist <ArrowRight size={18} />
       </Link>
       <Link
         href="/find-your-destination"
-        className={buttonVariants({ variant: "outline", size: "lg" })}
+        className={buttonVariants({ variant: "outline", size: "lg", className: "w-full" })}
       >
         Try the destination finder
       </Link>

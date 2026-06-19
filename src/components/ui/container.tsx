@@ -7,7 +7,7 @@ export function Container({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("mx-auto w-full max-w-7xl px-6 lg:px-10", className)}
+      className={cn("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10", className)}
       {...props}
     />
   );
@@ -55,11 +55,11 @@ export function SectionHeading({
       )}
     >
       {eyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
-      <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-navy-900 sm:text-5xl lg:text-6xl">
+      <h2 className="font-display text-[1.75rem] font-semibold leading-[1.1] tracking-tight text-navy-900 sm:text-4xl md:text-5xl lg:text-6xl">
         {title}
       </h2>
       {description && (
-        <p className="max-w-2xl text-base text-muted-foreground sm:text-lg">
+        <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-base lg:text-lg">
           {description}
         </p>
       )}

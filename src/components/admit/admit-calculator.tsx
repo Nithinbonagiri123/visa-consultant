@@ -57,16 +57,16 @@ export function AdmitCalculator() {
   }, [matches]);
 
   return (
-    <Container className="pb-24">
-      <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
+    <Container className="pb-16 sm:pb-24">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1fr_1.4fr]">
         {/* LEFT — inputs */}
-        <div className="rounded-[2rem] border border-navy-100 bg-white p-7 shadow-elevated lg:sticky lg:top-28 lg:self-start">
+        <div className="rounded-[1.5rem] border border-navy-100 bg-white p-5 shadow-elevated sm:rounded-[2rem] sm:p-7 lg:sticky lg:top-28 lg:self-start">
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-navy-900 text-gold-300">
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-navy-900 text-gold-300 sm:h-11 sm:w-11 sm:rounded-2xl">
               <GraduationCap size={20} />
             </span>
             <div>
-              <p className="font-display text-xl font-semibold tracking-tight text-navy-900">
+              <p className="font-display text-lg font-semibold tracking-tight text-navy-900 sm:text-xl">
                 Your profile
               </p>
               <p className="text-xs text-muted-foreground">
@@ -75,7 +75,7 @@ export function AdmitCalculator() {
             </div>
           </div>
 
-          <div className="mt-7 flex flex-col gap-6">
+          <div className="mt-6 flex flex-col gap-5 sm:mt-7 sm:gap-6">
             <Field label="Target programme">
               <select
                 value={programmeSlug}
@@ -149,15 +149,15 @@ export function AdmitCalculator() {
 
         {/* RIGHT — results */}
         <div>
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-navy-900 sm:text-3xl">
+          <h2 className="font-display text-xl font-semibold tracking-tight text-navy-900 sm:text-2xl lg:text-3xl">
             Your shortlist
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-2 text-[13px] text-muted-foreground sm:text-sm">
             {matches.length} universities ranked by fit for{" "}
             {programmeOptions.find((p) => p.slug === programmeSlug)?.shortName}.
           </p>
 
-          <div className="mt-8 flex flex-col gap-8">
+          <div className="mt-6 flex flex-col gap-6 sm:mt-8 sm:gap-8">
             <BandGroup
               title="Safe"
               tag="High-probability admits"
@@ -213,13 +213,13 @@ export function AdmitCalculator() {
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/#enquire"
-              className={buttonVariants({ variant: "primary", size: "lg" })}
+              className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
             >
               Refine with a counsellor <ArrowRight size={18} />
             </Link>
             <Link
               href="/universities"
-              className={buttonVariants({ variant: "outline", size: "lg" })}
+              className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
             >
               Browse all universities
             </Link>
@@ -329,25 +329,25 @@ function BandGroup({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-3xl border border-navy-100 bg-white p-6 shadow-elevated"
+            className="rounded-2xl border border-navy-100 bg-white p-4 shadow-elevated sm:rounded-3xl sm:p-6"
           >
             <div className="flex items-start justify-between gap-3">
               <div>
                 <Link
                   href={`/universities/${m.university.slug}`}
-                  className="font-display text-base font-semibold tracking-tight text-navy-900 hover:text-royal-600"
+                  className="font-display text-[15px] font-semibold tracking-tight text-navy-900 hover:text-royal-600 sm:text-base"
                 >
                   {m.university.name}
                 </Link>
-                <p className="mt-0.5 text-xs text-muted-foreground">
+                <p className="mt-0.5 text-[11px] text-muted-foreground sm:text-xs">
                   {m.university.city} · {countryName[m.university.countrySlug]} · QS #{m.university.qsRanking}
                 </p>
               </div>
-              <div className="text-right">
-                <p className="font-display text-2xl font-semibold leading-none text-navy-900">
+              <div className="shrink-0 text-right">
+                <p className="font-display text-xl font-semibold leading-none text-navy-900 sm:text-2xl">
                   {m.fitScore}
                 </p>
-                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500">
+                <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-navy-500 sm:text-[10px] sm:tracking-[0.16em]">
                   fit / 100
                 </p>
               </div>

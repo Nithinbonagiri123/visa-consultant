@@ -50,9 +50,9 @@ function Stat({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="flex flex-col items-start gap-2 border-t border-navy-100 px-8 py-10 sm:border-t-0 [&:nth-child(-n+2)]:sm:border-t-0 [&:nth-child(n+3)]:sm:border-t [&:nth-child(n+3)]:lg:border-t-0"
+      className="flex flex-col items-start gap-2 border-t border-navy-100 px-6 py-8 sm:border-t-0 sm:px-8 sm:py-10 [&:nth-child(-n+2)]:sm:border-t-0 [&:nth-child(n+3)]:sm:border-t [&:nth-child(n+3)]:lg:border-t-0"
     >
-      <p className="font-display text-5xl font-semibold tracking-tight text-navy-900 sm:text-6xl">
+      <p className="font-display text-4xl font-semibold tracking-tight text-navy-900 sm:text-5xl lg:text-6xl">
         <span ref={ref}>{v.toLocaleString()}</span>
         <span className="text-gold-400">{suffix}</span>
       </p>

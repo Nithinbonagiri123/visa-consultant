@@ -10,19 +10,20 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
+    <section className="relative isolate overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32">
       <BackgroundLayers />
 
       <Container className="relative">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
+        <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.15fr_1fr]">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: easeOut }}
-              className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white/70 px-3 py-1.5 text-xs font-medium text-navy-800 backdrop-blur"
+              className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white/70 px-3 py-1.5 text-[11px] font-medium text-navy-800 backdrop-blur sm:text-xs"
             >
-              <ShieldCheck size={14} className="text-royal-500" />
+              <ShieldCheck size={12} className="text-royal-500 sm:hidden" />
+              <ShieldCheck size={14} className="hidden text-royal-500 sm:inline" />
               India&apos;s trusted global education partner
             </motion.div>
 
@@ -30,7 +31,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.1, ease: easeOut }}
-              className="mt-6 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-navy-900 sm:text-6xl lg:text-7xl"
+              className="mt-5 font-display text-[2.25rem] font-semibold leading-[1.05] tracking-tight text-navy-900 sm:mt-6 sm:text-5xl lg:text-7xl"
             >
               Your gateway to a{" "}
               <span className="gradient-text">world-class</span> education.
@@ -40,7 +41,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: easeOut }}
-              className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+              className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:mt-7 sm:text-base lg:text-lg"
             >
               Senior overseas-education counsellors guiding Indian students to
               admission, scholarship, and visa success at leading universities in
@@ -51,18 +52,18 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: easeOut }}
-              className="mt-9 flex flex-wrap items-center gap-3"
+              className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center"
             >
               <a
                 href="#enquire"
-                className={buttonVariants({ variant: "primary", size: "lg" })}
+                className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
               >
                 Book free consultation
                 <ArrowRight size={18} />
               </a>
               <a
                 href="/visa-eligibility"
-                className={buttonVariants({ variant: "outline", size: "lg" })}
+                className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
               >
                 Check visa eligibility
               </a>
