@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Voice Simulator · Campus Meridian Agent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --navy-900: #0a1733;
+        --navy-700: #1f2f5e;
+        --navy-100: #e3e8f4;
+        --navy-50: #f3f5fb;
+        --gold-300: #ecc266;
+        --gold-400: #d8a23e;
+        --royal: #2f63ea;
+        --green: #10b981;
+        --red: #ef4444;
+        --surface: #f6f7fb;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
+        background: linear-gradient(180deg, var(--surface) 0%, white 60%);
+        color: var(--navy-900);
+        min-height: 100vh;
+      }
+      .wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+      .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+      .top a { color: var(--navy-700); text-decoration: none; font-size: 13px; font-weight: 500; }
+      .top a:hover { color: var(--navy-900); }
+      .badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+        text-transform: uppercase; padding: 4px 10px; border-radius: 999px;
+        background: var(--navy-50); color: var(--navy-700);
+      }
+      .status-dot { width: 8px; height: 8px; border-radius: 999px; background: #94a4d0; }
+      .status-dot.live { background: var(--green); box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15); }
+      .status-dot.listening { background: var(--red); box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15); animation: pulse 1.4s ease-in-out infinite; }
+      .status-dot.speaking { background: var(--royal); box-shadow: 0 0 0 4px rgba(47, 99, 234, 0.15); }
+      @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+
+      h1 { font-size: 36px; letter-spacing: -0.02em; margin: 0 0 8px; font-weight: 600; }
+      .lede { color: #5b6478; margin: 0 0 32px; font-size: 15px; line-height: 1.55; }
+
+      .card {
+        background: white; border: 1px solid var(--navy-100); border-radius: 24px;
+        padding: 28px; margin-bottom: 16px;
+        box-shadow: 0 8px 24px -8px rgba(10, 23, 51, 0.08);
+      }
+      .card h2 { font-size: 18px; margin: 0 0 16px; }
+      .row { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; margin-bottom: 16px; }
+      label { display: block; font-size: 12px; font-weight: 500; color: var(--navy-700);
+        text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+      input, select {
+        width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--navy-100);
+        border-radius: 12px; background: white; font-size: 14px; color: var(--navy-900);
+        font-family: inherit;
+      }
+      input:focus, select:focus { outline: none; border-color: var(--royal);
+        box-shadow: 0 0 0 3px rgba(47, 99, 234, 0.15); }
+      .btn {
+        height: 52px; padding: 0 28px; border: 0; border-radius: 999px;
+        font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+        font-family: inherit;
+        display: inline-flex; align-items: center; gap: 8px;
+      }
+      .btn-primary { background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+        color: var(--navy-900); box-shadow: 0 8px 24px -8px rgba(216, 162, 62, 0.5); }
+      .btn-primary:hover { transform: translateY(-1px); }
+      .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+      .btn-hangup {
+        background: white; border: 1px solid var(--navy-100); color: var(--red);
+      }
+      .btn-hangup:hover { background: var(--navy-50); }
+
+      .orb-wrap {
+        display: flex; flex-direction: column; align-items: center; gap: 14px;
+        text-align: center; padding: 24px 16px 8px;
+      }
+      .agent-name {
+        font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+        text-transform: uppercase; color: var(--navy-700);
+      }
+      .orb {
+        width: 140px; height: 140px; border-radius: 999px;
+        background: linear-gradient(135deg, #1f2f5e, #0a1733);
+        display: grid; place-items: center; color: var(--gold-300);
+        font-size: 56px; transition: all 0.3s ease;
+        box-shadow: 0 12px 40px -8px rgba(10, 23, 51, 0.4);
+      }
+      .orb.speaking {
+        background: linear-gradient(135deg, var(--royal), #1a47c2);
+        box-shadow: 0 0 0 0 rgba(47, 99, 234, 0.5);
+        animation: orb-pulse 1s ease-in-out infinite;
+      }
+      .orb.listening {
+        background: linear-gradient(135deg, var(--red), #b91c1c);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
+        animation: orb-pulse 1.2s ease-in-out infinite;
+      }
+      @keyframes orb-pulse {
+        0%,100% { box-shadow: 0 0 0 0 rgba(47, 99, 234, 0.5); }
+        50% { box-shadow: 0 0 0 24px rgba(47, 99, 234, 0); }
+      }
+      .agent-status {
+        font-size: 22px; font-weight: 600; letter-spacing: -0.01em;
+        min-height: 32px; color: var(--navy-900);
+      }
+      .agent-substatus {
+        font-size: 13px; color: #5b6478; min-height: 18px;
+      }
+      .interim {
+        font-style: italic; color: #5b6478; font-size: 13px; min-height: 18px;
+        padding: 0 16px; max-width: 540px; margin: 0 auto;
+      }
+
+      .transcript {
+        max-height: 280px; overflow-y: auto; padding: 8px 0; margin-top: 16px;
+        display: flex; flex-direction: column; gap: 6px;
+      }
+      .turn { padding: 8px 14px; border-radius: 12px; font-size: 14px;
+        max-width: 80%; line-height: 1.45; }
+      .turn.agent { background: var(--navy-50); color: var(--navy-900); align-self: flex-start; }
+      .turn.user { background: var(--royal); color: white; align-self: flex-end; }
+      .turn .label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+        text-transform: uppercase; opacity: 0.65; display: block; margin-bottom: 2px; }
+
+      .booking {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white; border-radius: 16px; padding: 18px 20px; margin-top: 16px;
+        font-weight: 600;
+      }
+      .booking small { display: block; opacity: 0.85; font-weight: 400; font-size: 12px;
+        margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+      .error { background: #fef2f2; color: #b91c1c; padding: 12px 16px;
+        border-radius: 12px; font-size: 13px; margin-top: 12px; }
+
+      .debug {
+        margin-top: 24px; padding: 16px; border-radius: 12px;
+        background: #1a1a1a; color: #d4d4d4; font-family: ui-monospace, "SF Mono", Monaco, monospace;
+        font-size: 12px; max-height: 200px; overflow-y: auto;
+      }
+      .debug .line { padding: 2px 0; opacity: 0.85; }
+      .debug .line.err { color: #fca5a5; }
+      .debug .line.ok { color: #86efac; }
+      .debug .line.in { color: #93c5fd; }
+      .debug .line.out { color: #fcd34d; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <a href="/">← Demo home</a>
+        <span class="badge"><span class="status-dot" id="statusDot"></span> <span id="statusText">Idle</span></span>
+      </div>
+
+      <h1>Voice Simulator</h1>
+      <p class="lede">
+        Pretend you submitted the enquiry form. The bot will "call" you in this tab. The mic
+        <strong>auto-activates</strong> after the bot finishes speaking — just talk normally.
+        Stops listening after ~1.5s of silence. Best in Chrome on macOS.
+      </p>
+
+      <div class="card" id="setup">
+        <h2>Pretend lead</h2>
+        <div class="row">
+          <div>
+            <label>Your name</label>
+            <input id="leadName" type="text" value="Sneha Iyer" />
+          </div>
+          <div>
+            <label>Country enquired</label>
+            <select id="leadCountry">
+              <option>Canada</option>
+              <option>UK</option>
+              <option>Ireland</option>
+              <option>Australia</option>
+              <option>USA</option>
+              <option>Germany</option>
+            </select>
+          </div>
+        </div>
+        <button id="callBtn" class="btn btn-primary">📞 Call me now</button>
+      </div>
+
+      <div class="card" id="callPanel" style="display:none">
+        <div class="orb-wrap">
+          <span class="agent-name">Aria · Campus Meridian Assistant</span>
+          <div class="orb" id="orb">🎙️</div>
+          <div class="agent-status" id="agentStatus">Connecting…</div>
+          <div class="agent-substatus" id="agentSubstatus"></div>
+        </div>
+
+        <div class="interim" id="interimText"></div>
+
+        <div class="transcript" id="transcript"></div>
+        <div id="bookingBox"></div>
+        <div id="errorBox"></div>
+
+        <div style="text-align:center; margin-top:16px">
+          <button id="hangupBtn" class="btn btn-hangup">Hang up</button>
+        </div>
+
+        <div class="debug" id="debug"></div>
+      </div>
+    </div>
+
+    <script>
+      // ---- DOM ----
+      const $ = (id) => document.getElementById(id);
+      const setupEl = $("setup");
+      const callPanelEl = $("callPanel");
+      const callBtn = $("callBtn");
+      const hangupBtn = $("hangupBtn");
+      const orb = $("orb");
+      const agentStatus = $("agentStatus");
+      const agentSubstatus = $("agentSubstatus");
+      const transcriptEl = $("transcript");
+      const interimEl = $("interimText");
+      const bookingBox = $("bookingBox");
+      const errorBox = $("errorBox");
+      const debugEl = $("debug");
+      const statusDot = $("statusDot");
+      const statusText = $("statusText");
+
+      // ---- State ----
+      let ws = null;
+      let recognition = null;
+      let isSpeaking = false;
+      let isListening = false;
+      let callActive = false;
+      let preferredVoice = null;
+      let capturedFinal = "";
+
+      // ---- Debug log (visible in the page) ----
+      function log(line, kind) {
+        const d = document.createElement("div");
+        d.className = "line" + (kind ? " " + kind : "");
+        const t = new Date().toLocaleTimeString();
+        d.textContent = `[${t}] ${line}`;
+        debugEl.appendChild(d);
+        debugEl.scrollTop = debugEl.scrollHeight;
+        console.log("[voice]", line);
+      }
+
+      // ---- Voice ----
+      function loadVoice() {
+        const voices = window.speechSynthesis.getVoices();
+        if (voices.length === 0) return;
+        preferredVoice =
+          voices.find(v => /en[-_]IN/i.test(v.lang) && /female/i.test(v.name)) ||
+          voices.find(v => /en[-_]IN/i.test(v.lang)) ||
+          voices.find(v => /(Samantha|Allison|Karen|Premium|Neural)/i.test(v.name) && /en/i.test(v.lang)) ||
+          voices.find(v => /^en/i.test(v.lang)) ||
+          voices[0];
+        if (preferredVoice) log("voice=" + preferredVoice.name + " (" + preferredVoice.lang + ")", "ok");
+      }
+      window.speechSynthesis.onvoiceschanged = loadVoice;
+      loadVoice();
+
+      function setOrbState(kind) {
+        orb.classList.remove("speaking", "listening");
+        if (kind === "speaking" || kind === "listening") orb.classList.add(kind);
+        orb.textContent = kind === "speaking" ? "🗣️" : kind === "listening" ? "🎤" : "🎙️";
+      }
+
+      function setStatus(kind, label, sublabel) {
+        statusText.textContent = label;
+        statusDot.classList.remove("live", "listening", "speaking");
+        if (kind) statusDot.classList.add(kind);
+        agentStatus.textContent = label;
+        agentSubstatus.textContent = sublabel || "";
+      }
+
+      function speak(text) {
+        return new Promise((resolve) => {
+          if (!text) { resolve(); return; }
+          // Cancel any queued speech to avoid overlap.
+          window.speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance(text);
+          if (preferredVoice) u.voice = preferredVoice;
+          u.rate = 1.0; u.pitch = 1.0;
+          u.onstart = () => {
+            isSpeaking = true;
+            setOrbState("speaking");
+            setStatus("speaking", "Speaking", "Aria is responding…");
+          };
+          u.onend = () => {
+            isSpeaking = false;
+            log("TTS ended", "ok");
+            resolve();
+          };
+          u.onerror = (e) => {
+            isSpeaking = false;
+            log("TTS error: " + e.error, "err");
+            resolve();
+          };
+          window.speechSynthesis.speak(u);
+
+          // Chrome bug — speak() sometimes pauses after ~15s. Wake it up.
+          setTimeout(() => {
+            if (isSpeaking && window.speechSynthesis.paused) window.speechSynthesis.resume();
+          }, 14000);
+        });
+      }
+
+      function appendTurn(role, text) {
+        const div = document.createElement("div");
+        div.className = "turn " + role;
+        const label = document.createElement("span");
+        label.className = "label";
+        label.textContent = role === "agent" ? "Aria" : "You";
+        const body = document.createElement("span");
+        body.textContent = text;
+        div.appendChild(label);
+        div.appendChild(body);
+        transcriptEl.appendChild(div);
+        transcriptEl.scrollTop = transcriptEl.scrollHeight;
+      }
+
+      // ---- Speech recognition: simple flow ---------------------------------
+      // continuous=false → Chrome ends recognition naturally when you pause.
+      // We send whatever was captured on onend, then restart listening if no
+      // speech was captured (so silence doesn't dead-end the call).
+      function ensureRecognition() {
+        if (recognition) return recognition;
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SR) {
+          showError("Your browser doesn't support SpeechRecognition. Use Chrome on macOS.");
+          return null;
+        }
+        const r = new SR();
+        r.lang = "en-IN";
+        r.continuous = false;       // end naturally when user stops
+        r.interimResults = true;    // for visual feedback only
+        r.maxAlternatives = 1;
+
+        r.onstart = () => {
+          isListening = true;
+          capturedFinal = "";
+          setOrbState("listening");
+          setStatus("listening", "Listening", "Speak now — I'll send when you pause.");
+          log("recognition started", "ok");
+        };
+
+        r.onresult = (e) => {
+          let interim = "", final_ = "";
+          for (let i = 0; i < e.results.length; i++) {
+            const t = e.results[i][0].transcript;
+            if (e.results[i].isFinal) final_ += t;
+            else interim += t;
+          }
+          if (final_) capturedFinal = (capturedFinal + " " + final_).trim();
+          interimEl.textContent = (capturedFinal + " " + interim).trim();
+        };
+
+        r.onend = () => {
+          isListening = false;
+          interimEl.textContent = "";
+          const text = capturedFinal.trim();
+          log("recognition ended, captured=" + JSON.stringify(text), "ok");
+
+          if (text) {
+            // Got speech — send it.
+            appendTurn("user", text);
+            if (ws && ws.readyState === WebSocket.OPEN) {
+              ws.send(JSON.stringify({ type: "speech", text }));
+              setStatus("live", "Sent", "Waiting for Aria…");
+              setOrbState("idle");
+            }
+            capturedFinal = "";
+          } else if (callActive && !isSpeaking) {
+            // Silence — restart so the user has another chance.
+            log("no speech captured, restarting…", "out");
+            setTimeout(() => { if (callActive && !isSpeaking) startListening(); }, 300);
+          }
+        };
+
+        r.onerror = (e) => {
+          isListening = false;
+          if (e.error === "no-speech" || e.error === "aborted") {
+            log("recognition: " + e.error + " (will restart)", "ok");
+            // onend will fire next and handle the restart.
+          } else if (e.error === "not-allowed") {
+            showError("Microphone access denied. Click the lock icon in the URL bar and allow microphone.");
+          } else {
+            log("recognition error: " + e.error, "err");
+          }
+        };
+
+        recognition = r;
+        return r;
+      }
+
+      function startListening() {
+        if (isSpeaking) { log("skip listen — bot still speaking", "out"); return; }
+        if (isListening) { log("skip listen — already listening", "out"); return; }
+        const r = ensureRecognition();
+        if (!r) return;
+        capturedFinal = "";
+        try {
+          r.start();
+        } catch (err) {
+          log("start() threw: " + err.message + " — retrying in 400ms", "err");
+          setTimeout(() => { try { r.start(); } catch (e) { log("retry failed: " + e.message, "err"); } }, 400);
+        }
+      }
+
+      function stopListening() {
+        if (recognition && isListening) {
+          try { recognition.stop(); } catch {}
+        }
+      }
+
+      // ---- Call lifecycle ----
+      callBtn.addEventListener("click", async () => {
+        errorBox.innerHTML = "";
+        bookingBox.innerHTML = "";
+        transcriptEl.innerHTML = "";
+        debugEl.innerHTML = "";
+
+        const leadName = $("leadName").value.trim();
+        const country = $("leadCountry").value;
+        if (!leadName) return showError("Enter a name first");
+
+        // Request mic permission upfront so the user sees the prompt before the bot talks.
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          stream.getTracks().forEach((t) => t.stop());
+          log("mic permission granted", "ok");
+        } catch (err) {
+          showError("Microphone permission denied. Please allow mic and try again.");
+          return;
+        }
+
+        setupEl.style.display = "none";
+        callPanelEl.style.display = "block";
+        setStatus("connecting", "Ringing…", "");
+        setOrbState("idle");
+        callActive = true;
+
+        const url = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/ws/voice";
+        ws = new WebSocket(url);
+
+        ws.onopen = () => {
+          log("WS open", "ok");
+          ws.send(JSON.stringify({ type: "start", leadName, country }));
+        };
+        ws.onmessage = async (e) => {
+          const msg = JSON.parse(e.data);
+          log("WS in: " + msg.type, "in");
+          if (msg.type === "ready") {
+            setStatus("live", "Live", "Aria is about to speak…");
+          } else if (msg.type === "agent_speak") {
+            appendTurn("agent", msg.text);
+            await speak(msg.text);
+            // After bot finishes speaking, auto-listen unless call ended.
+            if (callActive) startListening();
+          } else if (msg.type === "booking_confirmed") {
+            bookingBox.innerHTML =
+              '<div class="booking">✓ Booking confirmed<small>' +
+              msg.counsellor + " · " + msg.time + '</small></div>';
+          } else if (msg.type === "ended") {
+            callActive = false;
+            stopListening();
+            setStatus("idle", "Call ended", "");
+            setOrbState("idle");
+          } else if (msg.type === "error") {
+            showError(msg.message);
+            log("server error: " + msg.message, "err");
+          }
+        };
+        ws.onerror = () => {
+          showError("Connection error. Is the agent server running on port 4000?");
+          log("WS error", "err");
+        };
+        ws.onclose = () => {
+          callActive = false;
+          stopListening();
+          log("WS closed", "out");
+          if (agentStatus.textContent !== "Call ended") {
+            setStatus("idle", "Disconnected", "");
+            setOrbState("idle");
+          }
+        };
+      });
+
+      hangupBtn.addEventListener("click", () => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type: "hangup" }));
+        }
+        callActive = false;
+        window.speechSynthesis.cancel();
+        stopListening();
+        setStatus("idle", "Call ended", "");
+        setOrbState("idle");
+        setTimeout(() => {
+          setupEl.style.display = "block";
+          callPanelEl.style.display = "none";
+        }, 600);
+      });
+
+      function showError(msg) {
+        errorBox.innerHTML = '<div class="error">⚠️ ' + msg + "</div>";
+      }
+    </script>
+  </body>
+</html>

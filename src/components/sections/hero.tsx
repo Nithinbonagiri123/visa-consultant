@@ -67,6 +67,20 @@ export function Hero() {
                 Check visa eligibility
               </a>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="mt-7 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-700"
+            >
+              <span className="rounded-full bg-gold-300/30 px-3 py-1 text-gold-500">
+                ✦ Up to ₹25L in scholarships
+              </span>
+              <span className="rounded-full bg-royal-500/10 px-3 py-1 text-royal-600">
+                ✦ Loans up to ₹1 Cr
+              </span>
+            </motion.div>
           </div>
 
           <motion.div

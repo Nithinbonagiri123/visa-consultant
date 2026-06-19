@@ -396,4 +396,131 @@ export const destinationDetail: Record<string, DestinationDetail> = {
       { q: "Can I move to Europe or North America after studying in the UAE?", a: "Yes — UK, Australian and US branch-campus degrees are accepted for further study and skilled-migration applications in those countries." },
     ],
   },
+
+  netherlands: {
+    heroTitle: "Study in the Netherlands",
+    heroLede:
+      "Innovation-driven universities, EU-recognised English-taught degrees, and the Orientation Year — 12 months to find work after graduation.",
+    whyPoints: [
+      { title: "100% English programmes", description: "More than 2,100 master's programmes taught entirely in English at world-ranked Dutch universities." },
+      { title: "12-month Orientation Year", description: "Zoekjaar (Orientation Year) gives every non-EU graduate 12 months to find skilled employment." },
+      { title: "Strong tech & business", description: "ASML, Philips, ING, Booking.com and Shell anchor a job market that actively recruits international graduates." },
+      { title: "Liveable cities", description: "Amsterdam, Utrecht, Eindhoven and Rotterdam consistently rank in Europe's top liveability scores." },
+    ],
+    popularCourses: [
+      "MSc Computer Science", "MSc Artificial Intelligence", "MSc Data Science",
+      "MSc Finance", "MSc International Business", "MSc Engineering & Policy Analysis",
+    ],
+    costBreakdown: [
+      { label: "Tuition (master's)", range: "₹14–22L / year" },
+      { label: "Living costs", range: "₹10–14L / year" },
+      { label: "Health insurance", range: "₹50–80K / year" },
+    ],
+    postStudyWork:
+      "Orientation Year (Zoekjaar): 12 months after graduation for non-EU graduates to look for work — once employed, the Highly Skilled Migrant route opens.",
+    visaSnapshot: [
+      { label: "Visa type", value: "MVV + residence permit" },
+      { label: "Processing", value: "2–4 weeks" },
+      { label: "Financial proof", value: "€16,000 / year living + tuition" },
+      { label: "Work allowance", value: "16 hrs/week term, full-time breaks" },
+    ],
+    scholarships: [
+      { name: "Holland Scholarship", description: "€5,000 one-time scholarship for non-EU students at participating universities." },
+      { name: "Orange Knowledge Programme", description: "Government-funded master's scholarships for international students." },
+      { name: "University excellence awards", description: "Most Dutch universities offer 25–100% tuition reductions for high-merit applicants." },
+    ],
+    careers: [
+      { sector: "Tech & AI", note: "Amsterdam and Eindhoven are home to AI-first companies, semiconductor giants (ASML), and a thriving startup scene." },
+      { sector: "Finance & consulting", note: "ING, Rabobank, ABN AMRO, McKinsey and Deloitte recruit international graduates each year." },
+      { sector: "Engineering & manufacturing", note: "Philips, Shell, Stellantis lead a Netherlands-anchored hardware corridor." },
+    ],
+    faq: [
+      { q: "Is the Netherlands cheap to study in?", a: "Tuition for non-EU students is typically €12,000–18,000/year — meaningfully cheaper than the UK or US, and English-taught programmes are abundant." },
+      { q: "Do I need to speak Dutch?", a: "Not for English-taught programmes or for most international jobs. Learning basic Dutch helps with part-time work and integration." },
+    ],
+  },
+
+  finland: {
+    heroTitle: "Study in Finland",
+    heroLede:
+      "World's most innovative education system, low tuition for non-EU students, and a two-year residence permit to find work after graduation.",
+    whyPoints: [
+      { title: "Low tuition", description: "Non-EU master's tuition ranges €8,000–18,000/year — substantially less than other Nordic / English-speaking destinations." },
+      { title: "2-year residence permit", description: "After graduation, non-EU students get a 2-year permit to find skilled employment in Finland." },
+      { title: "World-class research", description: "Aalto, Helsinki, and Tampere rank in the global top 200 with deep partnerships across Nordic industry." },
+      { title: "Nordic tech sector", description: "Nokia, Supercell, Wolt, KONE — Finland's tech and design sectors actively hire international talent." },
+    ],
+    popularCourses: [
+      "MSc Computer Science", "MSc Data Science", "MSc Artificial Intelligence",
+      "MSc Information Networks", "MSc Industrial Engineering", "MSc Environmental Engineering",
+    ],
+    costBreakdown: [
+      { label: "Tuition (master's)", range: "₹8–18L / year" },
+      { label: "Living costs", range: "₹8–11L / year" },
+      { label: "Health insurance", range: "₹40–60K / year" },
+    ],
+    postStudyWork:
+      "Two-year residence permit (extended from 1 year in 2022) for non-EU graduates to find skilled employment. Transition to a regular work permit once hired.",
+    visaSnapshot: [
+      { label: "Visa type", value: "Residence Permit for Studies" },
+      { label: "Processing", value: "1–3 months" },
+      { label: "Financial proof", value: "€800 / month minimum" },
+      { label: "Work allowance", value: "30 hrs/week average across the year" },
+    ],
+    scholarships: [
+      { name: "Finland Scholarship", description: "100% tuition waiver + €5,000 first-year stipend at most Finnish universities for top-performing non-EU applicants." },
+      { name: "Aalto, Helsinki & Tampere merit awards", description: "Tuition reductions of 50–100% based on academic merit." },
+    ],
+    careers: [
+      { sector: "Software & gaming", note: "Helsinki has Europe's densest concentration of gaming companies — Supercell, Rovio, Remedy." },
+      { sector: "Industrial tech", note: "Nokia, KONE, Wärtsilä actively hire MSc graduates in industrial and IT engineering." },
+      { sector: "Clean tech & energy", note: "Finland leads Europe on clean energy and climate tech — Neste, Fortum, and a strong startup pipeline." },
+    ],
+    faq: [
+      { q: "Is Finland cold all year?", a: "Winters are cold (Nov–Mar) but summers are mild and bright. Cities are well-equipped — public transport runs year-round and student housing is heated to Nordic standards." },
+      { q: "Are there scholarships I can realistically win?", a: "Yes — the Finland Scholarship covers 100% tuition + €5,000 for first-year applicants from non-EU countries. Each university handles its own selection." },
+    ],
+  },
+
+  sweden: {
+    heroTitle: "Study in Sweden",
+    heroLede:
+      "Innovation capital of Europe, English-taught master's at globally ranked universities, and a 12-month job seeker visa after graduation.",
+    whyPoints: [
+      { title: "Innovation-led economy", description: "Spotify, Klarna, IKEA, Ericsson and Volvo anchor one of the world's most productive innovation ecosystems." },
+      { title: "12-month job seeker visa", description: "Non-EU graduates get a year to find skilled employment after graduating from a Swedish master's." },
+      { title: "English programmes", description: "Over 1,000 master's programmes taught entirely in English at universities ranked in the global top 500." },
+      { title: "Strong gender + work-life", description: "Sweden ranks at the top of every liveability index — flat hierarchies, work-life balance, generous social benefits." },
+    ],
+    popularCourses: [
+      "MSc Computer Science", "MSc Data Science", "MSc Sustainable Energy",
+      "MSc Industrial Engineering", "MSc Innovation Management", "MSc Finance",
+    ],
+    costBreakdown: [
+      { label: "Tuition (master's)", range: "₹10–20L / year" },
+      { label: "Living costs", range: "₹10–14L / year" },
+      { label: "Health insurance", range: "₹50–70K / year" },
+    ],
+    postStudyWork:
+      "Residence permit for job seeking: 12 months after graduation for non-EU graduates. Transition to a work permit once you have a job offer meeting the salary threshold.",
+    visaSnapshot: [
+      { label: "Visa type", value: "Residence Permit for Studies" },
+      { label: "Processing", value: "1–3 months" },
+      { label: "Financial proof", value: "SEK 9,750 / month" },
+      { label: "Work allowance", value: "No formal cap — manage with study load" },
+    ],
+    scholarships: [
+      { name: "Swedish Institute Scholarships", description: "Government-funded full tuition + living for master's — highly competitive." },
+      { name: "University-specific scholarships", description: "Most Swedish universities offer 25–100% tuition reductions for non-EU students." },
+    ],
+    careers: [
+      { sector: "Tech & startups", note: "Stockholm has produced more unicorns per capita than almost any city — Spotify, Klarna, King, Mojang." },
+      { sector: "Industrial engineering", note: "Volvo, Scania, Ericsson, ABB recruit MSc graduates in engineering and industrial systems." },
+      { sector: "Clean tech & sustainability", note: "Swedish industry is leading the global transition to green energy and circular manufacturing." },
+    ],
+    faq: [
+      { q: "Is Sweden too expensive for Indian students?", a: "Tuition is moderate (€10,000–20,000/year) and the Swedish Institute Scholarship can fully fund top-tier candidates. Living costs are similar to Ireland." },
+      { q: "Can I work in Sweden after my master's?", a: "Yes — the 12-month job seeker permit and clear conversion to a work permit make Sweden one of the easier Nordic destinations to stay long-term." },
+    ],
+  },
 };

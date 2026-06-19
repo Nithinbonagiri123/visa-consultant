@@ -1,5 +1,7 @@
 import { Hero } from "@/components/sections/hero";
+import { Accreditations } from "@/components/sections/accreditations";
 import { TrustStats } from "@/components/sections/trust-stats";
+import { StudentEmployers } from "@/components/sections/student-employers";
 import {
   DestinationsTeaser,
   ServicesTeaser,
@@ -16,10 +18,12 @@ export default function Home() {
       <OrganizationJsonLd />
       <FaqJsonLd />
       <Hero />
+      <Accreditations />
       <TrustStats />
       <DestinationsTeaser />
       <ServicesTeaser />
       <ToolsTeaser />
+      <StudentEmployers />
       <StoriesTeaser />
       <FAQTeaser />
       <CTABand />

@@ -7,6 +7,7 @@ import { ArrowRight, Calculator, Landmark, PiggyBank, Wallet } from "lucide-reac
 
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
+import { EmailResultButton } from "@/components/forms/email-result-button";
 import { cn } from "@/lib/utils";
 
 // ---- pure math ------------------------------------------------------------
@@ -177,6 +178,21 @@ export function EMICalculator() {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div className="mt-6">
+        <EmailResultButton
+          tool="loan-emi"
+          label="Email me this EMI plan"
+          payload={{
+            principalLakhs: principal,
+            annualRatePct: rate,
+            tenureYears: tenure,
+            emi: Math.round(result.emi),
+            totalInterest: Math.round(result.totalInterest),
+            totalPayment: Math.round(result.totalPayment),
+          }}
+        />
       </div>
 
       <DisclaimerNote />

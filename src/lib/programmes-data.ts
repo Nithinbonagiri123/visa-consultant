@@ -228,6 +228,9 @@ export const countryProgrammeFit: Record<string, string[]> = {
   france: ["mba", "msc-finance", "ms-data-science"],
   "new-zealand": ["ms-computer-science", "ms-data-science", "mba"],
   uae: ["mba", "msc-finance"],
+  netherlands: ["ms-computer-science", "ms-data-science", "ms-artificial-intelligence", "msc-finance", "mba"],
+  finland: ["ms-computer-science", "ms-data-science", "ms-artificial-intelligence"],
+  sweden: ["ms-computer-science", "ms-data-science", "msc-finance"],
 };
 
 export type ProgrammeRoute = { programmeSlug: string; countrySlug: string };

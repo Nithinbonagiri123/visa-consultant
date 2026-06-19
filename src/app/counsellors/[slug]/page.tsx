@@ -88,13 +88,24 @@ export default async function CounsellorPage({
                   {c.role}
                 </p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <Link
                   href="/#enquire"
                   className={buttonVariants({ variant: "primary", size: "lg" })}
                 >
                   Book with {c.name.split(" ")[0]} <ArrowRight size={18} />
                 </Link>
+                <a
+                  href={`https://wa.me/${c.whatsapp.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
+                    `Hi ${c.name.split(" ")[0]}, I'd like to book a consultation through Campus Meridian.`,
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(37,211,102,0.5)] transition-transform hover:-translate-y-0.5"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M.057 24l1.687-6.163A11.867 11.867 0 010 11.985C.003 5.369 5.373 0 11.985 0c3.207 0 6.222 1.248 8.487 3.513a11.882 11.882 0 013.51 8.487c-.003 6.616-5.374 11.986-11.99 11.986a11.99 11.99 0 01-5.733-1.459L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.003-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607z" /></svg>
+                  WhatsApp {c.name.split(" ")[0]}
+                </a>
               </div>
             </div>
 

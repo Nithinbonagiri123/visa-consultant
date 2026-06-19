@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Campus Meridian — Agent Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --navy-900: #0a1733;
+        --navy-700: #1f2f5e;
+        --navy-100: #e3e8f4;
+        --navy-50: #f3f5fb;
+        --gold-400: #d8a23e;
+        --royal: #2f63ea;
+        --surface: #f6f7fb;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
+        background: linear-gradient(180deg, var(--surface) 0%, white 60%);
+        color: var(--navy-900);
+        min-height: 100vh;
+      }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 80px 24px; }
+      .eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--navy-700);
+        background: white; padding: 6px 12px; border-radius: 999px;
+        border: 1px solid var(--navy-100);
+      }
+      .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--gold-400); }
+      h1 {
+        font-size: 48px; line-height: 1.05; letter-spacing: -0.02em;
+        margin: 24px 0 16px; font-weight: 600;
+      }
+      .grad {
+        background: linear-gradient(135deg, #ecc266, #d8a23e, #b5832a);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      .lede { font-size: 17px; line-height: 1.6; color: #5b6478; max-width: 640px; margin: 0 0 48px; }
+      .grid { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+      .card {
+        background: white; border: 1px solid var(--navy-100); border-radius: 24px;
+        padding: 32px; text-decoration: none; color: inherit; display: block;
+        box-shadow: 0 8px 24px -8px rgba(10, 23, 51, 0.08);
+        transition: all 0.2s ease;
+      }
+      .card:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(10, 23, 51, 0.18); }
+      .card .icon {
+        width: 48px; height: 48px; border-radius: 14px;
+        background: var(--navy-900); color: var(--gold-400);
+        display: grid; place-items: center; margin-bottom: 20px; font-size: 22px;
+      }
+      .card h2 { font-size: 22px; margin: 0 0 8px; letter-spacing: -0.01em; }
+      .card p { color: #5b6478; font-size: 14px; line-height: 1.55; margin: 0; }
+      .pill { display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 600;
+        color: var(--royal); letter-spacing: 0.06em; text-transform: uppercase; }
+      footer {
+        margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--navy-100);
+        color: #5b6478; font-size: 13px;
+      }
+      code { font-family: ui-monospace, "SF Mono", Monaco, monospace; background: var(--navy-50); padding: 2px 6px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span> Local Demo · Free Tier</span>
+      <h1>Campus Meridian <span class="grad">AI Agent</span> demo</h1>
+      <p class="lede">
+        Two prototypes running on Gemini 1.5 Flash. Voice uses your browser's mic + speakers
+        (works best in <strong>Chrome on macOS</strong>). The bot is scoped to scheduling-only
+        — it cannot quote prices, scholarships, or recommend programmes. Refusal logic is enforced
+        in the system prompt.
+      </p>
+
+      <div class="grid">
+        <a href="/voice.html" class="card">
+          <div class="icon">📞</div>
+          <h2>Voice Simulator</h2>
+          <p>
+            Click <em>"Call me"</em> → the bot speaks → you talk back into your mic.
+            Goal: confirm identity, pick a slot, book a senior counsellor.
+          </p>
+          <span class="pill">Try the call →</span>
+        </a>
+
+        <a href="/whatsapp.html" class="card">
+          <div class="icon">💬</div>
+          <h2>WhatsApp Simulator</h2>
+          <p>
+            Chat-style qualifier. Bot asks 4 questions (intake, budget, IELTS, field) and
+            hands off a structured profile to the human counsellor.
+          </p>
+          <span class="pill">Open chat →</span>
+        </a>
+      </div>
+
+      <footer>
+        Backend on <code>http://localhost:4000</code> ·
+        Gemini key loaded from <code>agent/.env.local</code> ·
+        Conversation state is in-memory only (refresh = lose state).
+      </footer>
+    </div>
+  </body>
+</html>

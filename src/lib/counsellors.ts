@@ -13,6 +13,7 @@ export type Counsellor = {
   countries: string[];     // slugs of destinations they specialise in
   fields: string[];        // fields of expertise
   philosophy: string;      // pull quote
+  whatsapp: string;        // E.164-style WhatsApp number with country code
   successStories: {
     studentName: string;
     course: string;
@@ -29,7 +30,7 @@ export const counsellors: Counsellor[] = [
     role: "Founder & Principal Counsellor",
     shortBio:
       "Twelve years guiding Indian students into global universities — and the reason Campus Meridian exists.",
-    bio: `Aarti founded Campus Meridian after a decade leading admissions counselling at one of India's largest education consultancies. She has personally walked over 600 students from first conversation to first day on campus across Ireland, the UK, Canada, the US, and Australia.
+    bio: `Arun Kumar founded Campus Meridian after a decade leading admissions counselling at one of India's largest education consultancies. She has personally walked over 600 students from first conversation to first day on campus across Ireland, the UK, Canada, the US, and Australia.
 
 Her counselling style is direct, profile-honest, and unapologetic about telling students when a university or country isn't the right fit — even when it's not what they want to hear.
 
@@ -42,6 +43,7 @@ When she's not on a counselling call, she's running half-marathons and reading a
     fields: ["Business Management", "Computer Science", "Data Science", "Engineering"],
     philosophy:
       "A great shortlist beats fifteen scattered applications. Pick four well-matched universities, and put your whole heart into each one.",
+    whatsapp: "+919876543210",
     successStories: [
       {
         studentName: "Aarav M.",
@@ -78,6 +80,7 @@ He holds an MBA from the University of Warwick and a Bachelor's in Mechanical En
     fields: ["Finance", "Business Management", "Artificial Intelligence", "Healthcare"],
     philosophy:
       "An SOP is a one-page argument for why this exact programme at this exact university will accelerate the career you already want.",
+    whatsapp: "+919876543211",
     successStories: [
       {
         studentName: "Rohan V.",
@@ -114,6 +117,7 @@ Outside work, she runs a free monthly clinic for parents on financial planning f
     fields: ["Computer Science", "Data Science", "Engineering", "Healthcare"],
     philosophy:
       "Pick the country where the next ten years of your life look right, not the one with the prettiest brochure.",
+    whatsapp: "+919876543212",
     successStories: [
       {
         studentName: "Karthik R.",
@@ -150,6 +154,7 @@ He holds a Master's in International Education from the University of Melbourne 
     fields: ["Healthcare", "Engineering", "Hospitality", "Business Management"],
     philosophy:
       "The genuine-student narrative is everything. Tell a clear story about why this country, why this degree, why now — and the visa follows.",
+    whatsapp: "+919876543213",
     successStories: [
       {
         studentName: "Tanvi S.",

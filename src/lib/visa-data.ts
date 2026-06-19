@@ -161,6 +161,51 @@ export const visaProfiles: Record<string, VisaProfile> = {
       needsBiometrics: false,
     },
   },
+  netherlands: {
+    slug: "netherlands",
+    countryLabel: "Netherlands",
+    visaType: "MVV + residence permit",
+    thresholds: {
+      minAcademicPct: 65,
+      minIELTS: 6.5,
+      firstYearFundsINR: 18,
+      gapToleranceYears: 2,
+    },
+    notes: {
+      rejectionTolerance: "medium",
+      needsBiometrics: true,
+    },
+  },
+  finland: {
+    slug: "finland",
+    countryLabel: "Finland",
+    visaType: "Residence Permit for Studies",
+    thresholds: {
+      minAcademicPct: 70,
+      minIELTS: 6.5,
+      firstYearFundsINR: 12,
+      gapToleranceYears: 3,
+    },
+    notes: {
+      rejectionTolerance: "medium",
+      needsBiometrics: true,
+    },
+  },
+  sweden: {
+    slug: "sweden",
+    countryLabel: "Sweden",
+    visaType: "Residence Permit for Studies",
+    thresholds: {
+      minAcademicPct: 65,
+      minIELTS: 6.5,
+      firstYearFundsINR: 16,
+      gapToleranceYears: 3,
+    },
+    notes: {
+      rejectionTolerance: "medium",
+      needsBiometrics: true,
+    },
+  },
 };
 
 // ---------------- Form options ----------------

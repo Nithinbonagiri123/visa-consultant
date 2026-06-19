@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { MobileCtaBar } from "@/components/layout/mobile-cta-bar";
+import { SuccessTicker } from "@/components/layout/success-ticker";
 import { CurrencyProvider } from "@/contexts/currency-context";
 import { CrispChat } from "@/components/integrations/crisp-chat";
 import { site } from "@/lib/site";
@@ -80,6 +81,7 @@ export default function RootLayout({
           </SmoothScroll>
           <WhatsAppButton />
           <MobileCtaBar />
+          <SuccessTicker />
         </CurrencyProvider>
         <CrispChat />
       </body>

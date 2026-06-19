@@ -7,10 +7,14 @@ export const site = {
 
   // Replace with real brand assets / details
   contact: {
-    phone: "+91 00000 00000",
-    whatsapp: "+910000000000",
+    phone: "+91 98765 43200",
+    phoneIN: "+91 98765 43200",
+    phoneIE: "+353 89 000 0000",
+    whatsapp: "+919876543200",
     email: "hello@campusmeridian.com",
     address: "Hyderabad, India",
+    addressIN: "Hyderabad, Telangana, India",
+    addressIE: "Dublin, Ireland",
   },
 
   social: {
@@ -141,6 +145,39 @@ export const destinations: Destination[] = [
     topUniversities: ["University of Birmingham Dubai", "Heriot-Watt Dubai", "Middlesex Dubai"],
     intakes: "Sep · Jan",
     costFromINR: "₹12–22L / yr",
+  },
+  {
+    slug: "netherlands",
+    country: "Netherlands",
+    flag: "🇳🇱",
+    blurb:
+      "Innovation-driven universities, EU-recognised degrees taught entirely in English, and a 12-month orientation year for graduates.",
+    highlights: ["12-mo orientation year", "100% English programmes", "Strong tech & business"],
+    topUniversities: ["Delft University of Technology", "University of Amsterdam", "Erasmus University"],
+    intakes: "Sep · Feb",
+    costFromINR: "₹16–28L / yr",
+  },
+  {
+    slug: "finland",
+    country: "Finland",
+    flag: "🇫🇮",
+    blurb:
+      "World-leading education systems, low tuition, two-year residence permit after graduation, and a thriving Nordic tech sector.",
+    highlights: ["Low tuition", "2-yr stay-back", "World-class research"],
+    topUniversities: ["University of Helsinki", "Aalto University", "University of Turku"],
+    intakes: "Sep · Jan",
+    costFromINR: "₹10–20L / yr",
+  },
+  {
+    slug: "sweden",
+    country: "Sweden",
+    flag: "🇸🇪",
+    blurb:
+      "Innovation capital of Europe, English-taught master's at globally ranked universities, and a 12-month job seeker visa after graduation.",
+    highlights: ["Innovation hub", "12-mo job seeker visa", "English programmes"],
+    topUniversities: ["KTH Royal Institute", "Lund University", "Stockholm University"],
+    intakes: "Sep · Jan",
+    costFromINR: "₹14–24L / yr",
   },
 ];
 

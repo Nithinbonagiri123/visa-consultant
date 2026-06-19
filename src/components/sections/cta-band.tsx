@@ -31,6 +31,14 @@ export function CTABand() {
               <p className="mt-4 max-w-xl text-base text-navy-200">
                 No sales pitch. A clear assessment of your profile, target countries, and a six-step plan you can act on the same week.
               </p>
+              <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-300">
+                <span className="rounded-full border border-gold-300/40 bg-white/5 px-3 py-1 backdrop-blur">
+                  Up to ₹25L in scholarships
+                </span>
+                <span className="rounded-full border border-gold-300/40 bg-white/5 px-3 py-1 backdrop-blur">
+                  Collateral-free loans up to ₹1 Cr
+                </span>
+              </div>
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">

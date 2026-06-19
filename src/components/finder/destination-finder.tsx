@@ -18,6 +18,7 @@ import {
 
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
+import { EmailResultButton } from "@/components/forms/email-result-button";
 import { cn } from "@/lib/utils";
 import { destinations } from "@/lib/site";
 import {
@@ -419,7 +420,22 @@ function Results({
         </details>
       )}
 
-      <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-8">
+        <EmailResultButton
+          tool="destination-finder"
+          label="Email me these matches"
+          payload={{
+            topMatches: matches.slice(0, 3).map((m) => ({
+              slug: m.slug,
+              score: m.score,
+              reasons: m.reasons,
+              caveats: m.caveats,
+            })),
+          }}
+        />
+      </div>
+
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <Link
           href="/#enquire"
           className={buttonVariants({ variant: "primary", size: "lg" })}

@@ -7,6 +7,7 @@ import {
   Library,
   Users,
   HelpCircle,
+  Video,
   type LucideIcon,
 } from "lucide-react";
 
@@ -19,6 +20,7 @@ import { counsellors } from "@/lib/counsellors";
 import { glossary } from "@/lib/glossary-data";
 import { guides } from "@/lib/guides-data";
 import { getAllPostMeta } from "@/lib/blog";
+import { getUpcomingWebinars } from "@/lib/webinars-data";
 import { faqs } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -43,6 +45,7 @@ type Resource = {
 
 export default async function ResourcesPage() {
   const posts = await getAllPostMeta();
+  const upcomingWebinars = getUpcomingWebinars();
 
   const resources: Resource[] = [
     {
@@ -58,6 +61,13 @@ export default async function ResourcesPage() {
       blurb: "Free downloadable PDFs — country guides, education-loan playbook and visa-mistake checklists.",
       count: `${guides.length} PDFs`,
       icon: FileText,
+    },
+    {
+      href: "/webinars",
+      title: "Webinars",
+      blurb: "Live sessions with our senior counsellors — country intake guides, visa rule updates, SOP clinics. Recordings always shared.",
+      count: `${upcomingWebinars.length} upcoming`,
+      icon: Video,
     },
     {
       href: "/glossary",

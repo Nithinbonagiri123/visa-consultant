@@ -21,6 +21,7 @@ import {
 
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
+import { EmailResultButton } from "@/components/forms/email-result-button";
 import { cn } from "@/lib/utils";
 import { destinations } from "@/lib/site";
 import {
@@ -482,7 +483,22 @@ function Result({
         </div>
       )}
 
-      <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-8">
+        <EmailResultButton
+          tool="visa-eligibility"
+          label="Email me this eligibility report"
+          payload={{
+            country: result.country,
+            score: result.score,
+            band: result.band,
+            visaType: result.visaType,
+            strengths: result.strengths,
+            gaps: result.gaps,
+          }}
+        />
+      </div>
+
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <Link
           href="/#enquire"
           className={buttonVariants({ variant: "primary", size: "lg" })}

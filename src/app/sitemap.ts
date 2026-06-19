@@ -7,6 +7,7 @@ import { SUPPORTED_PAIRS, buildComparisonPairSlug } from "@/lib/comparator";
 import { cities } from "@/lib/cities-data";
 import { universities } from "@/lib/universities-data";
 import { guides } from "@/lib/guides-data";
+import { webinars } from "@/lib/webinars-data";
 import {
   SUPPORTED_PROGRAMME_PAIRS,
   buildProgrammePairSlug,
@@ -34,13 +35,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${site.url}/destinations`,  lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/universities`,  lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/programmes`,    lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/services`,      lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${site.url}/how-it-works`,  lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/services`,            lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/test-prep`,           lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/post-study-services`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/how-it-works`,        lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/stories`,       lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${site.url}/tools`,         lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/resources`,     lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${site.url}/counsellors`,   lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${site.url}/guides`,        lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/webinars`,      lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
     { url: `${site.url}/blog`,          lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${site.url}/faq`,           lastModified: now, changeFrequency: "monthly", priority: 0.7 },
 
@@ -81,6 +85,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${site.url}/guides/${g.slug}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+
+    // Webinar registration / replay pages
+    ...webinars.map((w) => ({
+      url: `${site.url}/webinars/${w.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
       priority: 0.7,
     })),
 

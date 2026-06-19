@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar } from "lucide-react";
+import { Calendar, Phone } from "lucide-react";
 import { site } from "@/lib/site";
 import { useWhatsAppHref } from "@/components/layout/whatsapp-button";
 
 export function MobileCtaBar() {
   const number = site.contact.whatsapp.replace(/[^\d]/g, "");
   const whatsappHref = useWhatsAppHref(number);
+  const telHref = `tel:${site.contact.phone.replace(/\s/g, "")}`;
 
   return (
     <motion.div
@@ -25,10 +26,17 @@ export function MobileCtaBar() {
         <div className="flex gap-2 rounded-full border border-navy-100 bg-white p-1.5 shadow-[0_12px_40px_-8px_rgba(10,23,51,0.25)]">
           <a
             href="/#enquire"
-            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-navy-900 px-4 py-3 text-sm font-semibold text-white"
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-navy-900 px-3 py-3 text-sm font-semibold text-white"
           >
             <Calendar size={16} />
-            Book consultation
+            Book
+          </a>
+          <a
+            href={telHref}
+            aria-label="Call us"
+            className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-royal-500 text-white"
+          >
+            <Phone size={18} />
           </a>
           <a
             href={whatsappHref}
