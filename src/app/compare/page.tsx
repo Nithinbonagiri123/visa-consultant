@@ -38,7 +38,7 @@ export default function ComparePage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Side-by-side"
             align="center"
@@ -55,7 +55,7 @@ export default function ComparePage() {
 
       <ComparatorPicker />
 
-      <section className="border-t border-navy-100 bg-surface-muted py-20">
+      <section className="border-t border-navy-100 bg-surface-muted py-14 sm:py-20">
         <Container>
           <SectionHeading
             eyebrow="Popular comparisons"

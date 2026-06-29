@@ -41,7 +41,7 @@ export default function StoriesPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Success stories"
             title={
@@ -57,7 +57,7 @@ export default function StoriesPage() {
 
       <Testimonials />
 
-      <section className="border-t border-navy-100 bg-surface-muted py-24">
+      <section className="border-t border-navy-100 bg-surface-muted py-14 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Recent placements"
@@ -68,51 +68,51 @@ export default function StoriesPage() {
             }
             description="Recent students placed by our counsellor team, with notes on what worked in each application."
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2">
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5">
             {counsellorStories.map((s) => (
               <div
                 key={`${s.studentName}-${s.university}`}
-                className="rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated"
+                className="rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated sm:rounded-3xl sm:p-7"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-500">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-500 sm:text-xs sm:tracking-[0.16em]">
                   {s.country}
                 </p>
-                <p className="mt-3 font-display text-xl font-semibold tracking-tight text-navy-900">
+                <p className="mt-3 font-display text-lg font-semibold tracking-tight text-navy-900 sm:text-xl">
                   {s.studentName} → {s.university}
                 </p>
-                <p className="text-xs text-muted-foreground">{s.course}</p>
-                <p className="mt-4 text-sm leading-relaxed text-navy-800">
+                <p className="text-[11px] text-muted-foreground sm:text-xs">{s.course}</p>
+                <p className="mt-3 text-[13px] leading-relaxed text-navy-800 sm:mt-4 sm:text-sm">
                   {s.note}
                 </p>
                 <Link
                   href={`/counsellors/${s.counsellor.slug}`}
-                  className="mt-5 flex items-center gap-3 border-t border-navy-100 pt-5"
+                  className="mt-4 flex items-center gap-3 border-t border-navy-100 pt-4 sm:mt-5 sm:pt-5"
                 >
                   <Avatar name={s.counsellor.name} size="sm" />
-                  <div className="flex-1">
-                    <p className="text-xs font-medium text-navy-900">
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-xs font-medium text-navy-900">
                       {s.counsellor.name}
                     </p>
-                    <p className="text-[11px] text-muted-foreground">
+                    <p className="truncate text-[11px] text-muted-foreground">
                       {s.counsellor.role}
                     </p>
                   </div>
-                  <ArrowRight size={14} className="text-navy-500" />
+                  <ArrowRight size={14} className="shrink-0 text-navy-500" />
                 </Link>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
             <Link
               href="/#enquire"
-              className={buttonVariants({ variant: "primary", size: "lg" })}
+              className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
             >
               Start your own story <ArrowRight size={18} />
             </Link>
             <Link
               href="/counsellors"
-              className={buttonVariants({ variant: "outline", size: "lg" })}
+              className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
             >
               Meet the counsellors
             </Link>

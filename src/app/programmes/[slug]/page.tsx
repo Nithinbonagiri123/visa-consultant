@@ -115,38 +115,38 @@ function Hero({
   crumbs: Crumb[];
 }) {
   return (
-    <section className="relative isolate overflow-hidden pb-20">
+    <section className="relative isolate overflow-hidden pb-12 sm:pb-20">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-surface-muted via-white to-white" />
       <div className="absolute inset-0 -z-10 bg-grid opacity-[0.04]" />
       <div className="absolute inset-x-0 top-0 -z-10 h-[60vh] bg-radial-fade" />
 
       <Breadcrumb items={crumbs} />
 
-      <Container className="mt-10">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+      <Container className="mt-6 sm:mt-10">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1.1fr_1fr]">
           <div>
-            <div className="inline-flex items-center gap-3 rounded-full border border-navy-100 bg-white/70 px-3 py-1.5 text-xs font-medium text-navy-800 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white/70 px-3 py-1.5 text-[11px] font-medium text-navy-800 backdrop-blur sm:gap-3 sm:text-xs">
               <span className="text-base leading-none">{country.flag}</span>
               {programme.category} · {country.country} · {country.intakes}
             </div>
-            <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-navy-900 sm:text-6xl">
+            <h1 className="mt-4 font-display text-[1.9rem] font-semibold leading-[1.05] tracking-tight text-navy-900 sm:mt-6 sm:text-5xl lg:text-6xl">
               {programme.name} <br />
-              <span className="text-3xl font-medium text-navy-600 sm:text-4xl">in </span>
+              <span className="text-2xl font-medium text-navy-600 sm:text-3xl lg:text-4xl">in </span>
               <span className="gradient-text">{country.country}</span>
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:mt-6 sm:text-base lg:text-lg">
               {programme.blurb}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
               <a
                 href="#enquire"
-                className={buttonVariants({ variant: "primary", size: "lg" })}
+                className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
               >
                 Book free counselling <ArrowRight size={18} />
               </a>
               <Link
                 href={`/study-in-${country.slug}`}
-                className={buttonVariants({ variant: "outline", size: "lg" })}
+                className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
               >
                 Study in {country.country} overview
               </Link>
@@ -170,7 +170,7 @@ function Overview({
   country: (typeof destinations)[number];
 }) {
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-24">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
           <div>
@@ -225,7 +225,7 @@ function Universities({
   programme: Programme;
 }) {
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="Where to study"
@@ -258,7 +258,7 @@ function Universities({
 
 function Curriculum({ programme }: { programme: Programme }) {
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="Curriculum"
@@ -304,7 +304,7 @@ function Requirements({ programme }: { programme: Programme }) {
   ];
 
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="Eligibility"
@@ -345,7 +345,7 @@ function Requirements({ programme }: { programme: Programme }) {
 
 function Costs({ detail }: { detail: (typeof destinationDetail)[string] }) {
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="Costs in INR"
@@ -397,7 +397,7 @@ function Careers({
   country: (typeof destinations)[number];
 }) {
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="Careers"
@@ -437,7 +437,7 @@ function PostStudyWork({
   country: (typeof destinations)[number];
 }) {
   return (
-    <section className="bg-navy-950 py-24 text-white">
+    <section className="bg-navy-950 py-14 text-white sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="Post-study work"

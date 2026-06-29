@@ -1,42 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, Award, GraduationCap, Globe2, BadgeCheck } from "lucide-react";
+import { ShieldCheck, BookOpen, Globe2, BadgeCheck } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
+// Ireland-relevant accreditations only. The original list (British Council /
+// AIRC / PIER) belonged to the multi-country era and is preserved in git
+// history if those scopes return.
 const ACCREDITATIONS = [
-  { label: "MEA Licensed",         sub: "Govt. of India",      icon: ShieldCheck },
-  { label: "British Council",       sub: "Certified counsellors", icon: Award },
-  { label: "ICEF Agency",           sub: "International",         icon: Globe2 },
-  { label: "AIRC",                  sub: "American Int. Rec.",   icon: BadgeCheck },
-  { label: "PIER Trained",          sub: "Australia",            icon: GraduationCap },
+  { label: "MEA Licensed",            sub: "Govt. of India",                     icon: ShieldCheck },
+  { label: "Education in Ireland",    sub: "Approved partner",                   icon: BadgeCheck },
+  { label: "Marketing English Ireland", sub: "MEI member",                       icon: BookOpen },
+  { label: "ICEF Agency",             sub: "International Consultants for Education", icon: Globe2 },
 ] as const;
 
 export function Accreditations() {
   return (
-    <section className="border-y border-navy-100 bg-surface-muted py-10">
+    <section className="border-b border-navy-100 bg-surface-cream py-12 sm:py-14">
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center gap-6"
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center gap-8"
         >
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-navy-500">
-            Licensed · Certified · Trusted
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-navy-700">
+            Licensed &middot; Accredited &middot; Ireland-focused
           </p>
-          <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+          <ul className="grid w-full grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-4 sm:gap-x-10">
             {ACCREDITATIONS.map((a) => (
-              <li key={a.label} className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-white text-navy-900 shadow-[0_4px_12px_-4px_rgba(10,23,51,0.15)]">
-                  <a.icon size={18} />
-                </span>
+              <li key={a.label} className="flex items-center gap-3 border-l-2 border-gold-400 pl-3">
+                <a.icon size={20} className="shrink-0 text-navy-900" strokeWidth={1.5} />
                 <div className="text-left">
-                  <p className="font-display text-sm font-semibold tracking-tight text-navy-900">
+                  <p className="font-display text-sm font-semibold text-navy-900">
                     {a.label}
                   </p>
-                  <p className="text-[11px] font-medium uppercase tracking-wider text-navy-500">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
                     {a.sub}
                   </p>
                 </div>

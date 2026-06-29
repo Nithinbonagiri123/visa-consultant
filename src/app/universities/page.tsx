@@ -47,7 +47,7 @@ export default function UniversitiesIndex() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Universities"
             title={
@@ -60,7 +60,7 @@ export default function UniversitiesIndex() {
         </Container>
       </section>
 
-      <Container className="pb-24">
+      <Container className="pb-14 sm:pb-24">
         <div className="flex flex-col gap-10">
           {Object.entries(grouped).map(([countrySlug, unis]) => (
             <div key={countrySlug}>

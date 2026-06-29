@@ -43,7 +43,7 @@ export default async function BlogIndexPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Study abroad blog"
             title={
@@ -57,14 +57,14 @@ export default async function BlogIndexPage() {
         </Container>
       </section>
 
-      <Container>
+      <Container className="pb-10 sm:pb-16">
         {featured && (
           <div className="mt-4">
             <PostCard post={featured} featured />
           </div>
         )}
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {rest.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}

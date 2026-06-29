@@ -39,7 +39,7 @@ export default function DestinationsIndex() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Destinations"
             title={
@@ -54,7 +54,7 @@ export default function DestinationsIndex() {
 
       <Destinations />
 
-      <section className="py-24">
+      <section className="py-14 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="City guides"
@@ -65,14 +65,14 @@ export default function DestinationsIndex() {
             }
             description="Cost of living, transport, culture, jobs and top universities for the 8 cities Indian students choose most."
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {cities.map((c) => (
               <Link
                 key={c.slug}
                 href={`/study-in-${c.slug}`}
-                className="group flex items-center gap-4 rounded-3xl border border-navy-100 bg-white p-5 shadow-elevated transition-shadow hover:shadow-[0_24px_48px_-20px_rgba(10,23,51,0.2)]"
+                className="group flex items-center gap-3 rounded-2xl border border-navy-100 bg-white p-4 shadow-elevated transition-shadow hover:shadow-[0_24px_48px_-20px_rgba(10,23,51,0.2)] sm:gap-4 sm:rounded-3xl sm:p-5"
               >
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-50 text-2xl">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-xl sm:h-12 sm:w-12 sm:text-2xl">
                   {c.flag}
                 </div>
                 <div className="min-w-0 flex-1">

@@ -48,7 +48,7 @@ export default function WebinarsPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Webinars"
             title={
@@ -61,20 +61,20 @@ export default function WebinarsPage() {
         </Container>
       </section>
 
-      <Container className="pb-24">
+      <Container className="pb-14 sm:pb-24">
         {/* Upcoming */}
-        <section className="mt-12">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-500">
+        <section className="mt-8 sm:mt-12">
+          <h2 className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-500 sm:text-xs sm:tracking-[0.18em]">
             Upcoming · {upcoming.length} session{upcoming.length === 1 ? "" : "s"}
           </h2>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2">
+          <div className="mt-4 grid gap-4 sm:mt-6 sm:grid-cols-2 sm:gap-5">
             {upcoming.map((w) => {
               const t = formatWebinarTime(w.startAt);
               return (
                 <Link
                   key={w.slug}
                   href={`/webinars/${w.slug}`}
-                  className="group relative overflow-hidden rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)]"
+                  className="group relative overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)] sm:rounded-3xl sm:p-7"
                 >
                   <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-royal-500/10 to-gold-400/10 blur-2xl" />
                   <div className="relative">
@@ -115,20 +115,20 @@ export default function WebinarsPage() {
 
         {/* Past — recordings */}
         {past.length > 0 && (
-          <section className="mt-20">
-            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-navy-500">
+          <section className="mt-12 sm:mt-20">
+            <h2 className="text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500 sm:text-xs sm:tracking-[0.18em]">
               Past sessions · Recordings available
             </h2>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+            <div className="mt-4 grid gap-4 sm:mt-6 sm:grid-cols-2 sm:gap-5">
               {past.map((w) => {
                 const t = formatWebinarTime(w.startAt);
                 return (
                   <Link
                     key={w.slug}
                     href={`/webinars/${w.slug}`}
-                    className="group flex items-start gap-4 rounded-3xl border border-navy-100 bg-white p-6 transition-shadow hover:shadow-elevated"
+                    className="group flex items-start gap-3 rounded-2xl border border-navy-100 bg-white p-5 transition-shadow hover:shadow-elevated sm:gap-4 sm:rounded-3xl sm:p-6"
                   >
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-navy-50 text-navy-900">
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-navy-50 text-navy-900 sm:h-12 sm:w-12 sm:rounded-2xl">
                       <Video size={20} />
                     </div>
                     <div className="flex-1">

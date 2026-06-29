@@ -34,7 +34,7 @@ export default function TestPrepPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Test prep"
             title={
@@ -60,7 +60,7 @@ export default function TestPrepPage() {
           {tests.map((t) => (
             <article
               key={t.slug}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)]"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)] sm:rounded-3xl sm:p-7"
             >
               <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-royal-500/10 to-gold-400/10 blur-2xl" />
 
@@ -127,8 +127,8 @@ export default function TestPrepPage() {
           ))}
         </div>
 
-        <div className="mt-12 rounded-3xl border border-navy-100 bg-gradient-to-br from-navy-900 via-navy-800 to-royal-600 p-8 text-white shadow-elevated sm:p-12">
-          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+        <div className="mt-8 rounded-2xl border border-navy-100 bg-gradient-to-br from-navy-900 via-navy-800 to-royal-600 p-6 text-white shadow-elevated sm:mt-12 sm:rounded-3xl sm:p-12">
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-300 backdrop-blur">
                 Score guarantee

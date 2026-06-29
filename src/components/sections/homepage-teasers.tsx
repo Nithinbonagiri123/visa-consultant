@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  ArrowUpRight,
   GraduationCap,
   Plane,
   Trophy,
@@ -13,20 +12,13 @@ import {
   ShieldCheck,
   Calculator,
   Scale,
-  Quote,
-  Plus,
 } from "lucide-react";
 
 import { Container, SectionHeading } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
-import { Cost } from "@/components/ui/cost";
-import { destinations, services, testimonials, faqs } from "@/lib/site";
+import { services, testimonials, faqs } from "@/lib/site";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
-
-// Featured countries on the home teaser — the four most-asked-about by Indian
-// students. Everyone else lives on /destinations.
-const FEATURED_COUNTRY_SLUGS = ["canada", "ireland", "uk", "australia"];
 
 const SERVICE_ICONS = { GraduationCap, Plane, Trophy, PenLine } as const;
 const FEATURED_SERVICE_TITLES = [
@@ -37,79 +29,80 @@ const FEATURED_SERVICE_TITLES = [
 ];
 
 const FEATURED_TOOLS = [
-  { href: "/find-your-destination", title: "Destination Finder", blurb: "Five questions → ranked country shortlist.", icon: Compass },
-  { href: "/visa-eligibility", title: "Visa Eligibility Check", blurb: "Country-specific scoring with concrete next steps.", icon: ShieldCheck },
-  { href: "/loan-emi-calculator", title: "Education Loan EMI", blurb: "Real-time EMI math and payback projections.", icon: Calculator },
-  { href: "/compare", title: "Country Comparator", blurb: "Side-by-side cost, visa, stay-back, universities.", icon: Scale },
+  { href: "/find-your-destination", title: "Programme Finder",      blurb: "Match your background to the right Irish master's programme.", icon: Compass },
+  { href: "/visa-eligibility",      title: "Visa Eligibility Check", blurb: "Score your Type D student visa application before you apply.", icon: ShieldCheck },
+  { href: "/loan-emi-calculator",   title: "Education Loan EMI",     blurb: "Real-time EMI math for Irish tuition + living costs.",        icon: Calculator },
+  { href: "/compare-programmes",    title: "Programme Comparator",   blurb: "Side-by-side fees, intake, ranking, post-study work rights.",  icon: Scale },
 ] as const;
 
-// ----- 1. Destinations teaser ----------------------------------------------
+// Ireland-specific reasons. Mirrors the destinationDetail.ireland.whyPoints
+// content, condensed for the homepage. Edit there and here together.
+const WHY_IRELAND = [
+  {
+    title: "EU-recognised degrees",
+    body: "Bachelor's and master's recognised across all 27 EU member states for further study and work.",
+  },
+  {
+    title: "Two-year stay-back",
+    body: "Master's graduates receive the Third Level Graduate Scheme — up to 24 months to live and work in Ireland.",
+  },
+  {
+    title: "Global tech & pharma corridor",
+    body: "Google, Meta, Pfizer and Johnson & Johnson anchor a job market hungry for STEM and business graduates.",
+  },
+  {
+    title: "English-language teaching",
+    body: "Every programme taught in English with structured academic and visa support for Indian students.",
+  },
+];
+
+// ----- 1. Why Ireland (replaces the multi-country destinations grid) -------
 
 export function DestinationsTeaser() {
-  const featured = FEATURED_COUNTRY_SLUGS
-    .map((slug) => destinations.find((d) => d.slug === slug))
-    .filter((d): d is (typeof destinations)[number] => Boolean(d));
-
   return (
-    <section id="destinations" className="relative py-24">
+    <section id="why-ireland" className="border-b border-navy-100 bg-white py-16 sm:py-24">
       <Container>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            eyebrow="Destinations"
-            title={
-              <>
-                Study where ambition meets <span className="gradient-text">opportunity</span>.
-              </>
-            }
-            description="Nine destinations, eight cities. Real graduate outcomes, transparent costs, and consulate-tuned visa strategy for each one."
-          />
-          <Link
-            href="/destinations"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.16em] text-royal-600 hover:text-navy-900"
-          >
-            See all destinations <ArrowRight size={14} />
-          </Link>
-        </div>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((d, i) => (
-            <motion.div
-              key={d.slug}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-5% 0px" }}
-              transition={{ duration: 0.5, delay: i * 0.05, ease: easeOut }}
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-500">
+              Why Ireland
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-semibold leading-[1.1] tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+              Four reasons Indian students are choosing Ireland.
+            </h2>
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+              An EU degree, two years of post-study work, and Europe&apos;s busiest tech corridor — Dublin to Cork — at your doorstep.
+            </p>
+            <Link
+              href="/study-in-ireland"
+              className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.16em] text-navy-900 underline decoration-gold-400 underline-offset-4 hover:decoration-navy-900"
             >
-              <Link
-                href={`/study-in-${d.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-navy-100 bg-white p-6 shadow-elevated transition-shadow hover:shadow-[0_24px_48px_-20px_rgba(10,23,51,0.25)]"
+              Full Ireland guide <ArrowRight size={14} />
+            </Link>
+          </div>
+
+          <ul className="grid gap-px bg-navy-100 sm:grid-cols-2">
+            {WHY_IRELAND.map((item, i) => (
+              <motion.li
+                key={item.title}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-5% 0px" }}
+                transition={{ duration: 0.45, delay: i * 0.05, ease: easeOut }}
+                className="flex flex-col gap-3 bg-white p-6 sm:p-8"
               >
-                <div className="flex items-start justify-between">
-                  <span className="text-3xl leading-none">{d.flag}</span>
-                  <span className="grid h-8 w-8 place-items-center rounded-full border border-navy-100 text-navy-700 transition-all duration-300 group-hover:border-navy-900 group-hover:bg-navy-900 group-hover:text-white">
-                    <ArrowUpRight size={14} />
-                  </span>
-                </div>
-                <p className="mt-4 font-display text-xl font-semibold tracking-tight text-navy-900">
-                  {d.country}
+                <span className="text-[11px] font-semibold tracking-[0.18em] text-gold-500">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-display text-lg font-semibold text-navy-900 sm:text-xl">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {item.body}
                 </p>
-                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-navy-500">
-                  {d.intakes}
-                </p>
-                <p className="mt-3 line-clamp-2 text-sm text-muted-foreground">
-                  {d.blurb}
-                </p>
-                <div className="mt-5 flex items-baseline justify-between border-t border-navy-100 pt-4">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500">
-                    Tuition from
-                  </span>
-                  <span className="font-display text-base font-semibold text-navy-900">
-                    <Cost inr={d.costFromINR} />
-                  </span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+              </motion.li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>
@@ -124,54 +117,49 @@ export function ServicesTeaser() {
     .filter((s): s is (typeof services)[number] => Boolean(s));
 
   return (
-    <section id="services" className="relative py-24">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-navy-200 to-transparent" />
+    <section id="services" className="bg-surface-cream py-16 sm:py-24">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             eyebrow="What we do"
-            title={
-              <>
-                Eight services. <span className="gradient-text">One</span> uninterrupted journey.
-              </>
-            }
-            description="From the day you reach out to the day you land — a single dedicated counsellor and a senior team behind them."
+            title="Eight services. One uninterrupted journey to Ireland."
+            description="From the day you reach out to the day you land in Dublin — a single dedicated counsellor and a senior team behind them."
           />
           <Link
             href="/services"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.16em] text-royal-600 hover:text-navy-900"
+            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.16em] text-navy-900 underline decoration-gold-400 underline-offset-4 hover:decoration-navy-900"
           >
             See all services <ArrowRight size={14} />
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-navy-100 bg-navy-100 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-px border border-navy-100 bg-navy-100 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((s, i) => {
             const Icon = SERVICE_ICONS[s.icon as keyof typeof SERVICE_ICONS];
             return (
-              <motion.div
+              <motion.li
                 key={s.title}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-5% 0px" }}
                 transition={{ duration: 0.45, delay: i * 0.05, ease: easeOut }}
-                className="group flex flex-col gap-5 bg-white p-7"
+                className="flex flex-col gap-5 bg-white p-6 sm:p-8"
               >
-                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-navy-900 text-white transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-gold-300 group-hover:to-gold-500 group-hover:text-navy-900">
-                  {Icon && <Icon size={18} />}
-                </div>
+                {Icon && (
+                  <Icon size={26} strokeWidth={1.5} className="text-navy-900" />
+                )}
                 <div>
-                  <h3 className="font-display text-base font-semibold tracking-tight text-navy-900">
+                  <h3 className="font-display text-lg font-semibold text-navy-900">
                     {s.title}
                   </h3>
-                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {s.description}
                   </p>
                 </div>
-              </motion.div>
+              </motion.li>
             );
           })}
-        </div>
+        </ul>
       </Container>
     </section>
   );
@@ -181,58 +169,51 @@ export function ServicesTeaser() {
 
 export function ToolsTeaser() {
   return (
-    <section className="relative py-24">
+    <section className="border-y border-navy-100 bg-white py-16 sm:py-24">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             eyebrow="Free tools"
-            title={
-              <>
-                Seven tools to plan your <span className="gradient-text">move</span>.
-              </>
-            }
-            description="Try the same tools our senior counsellors use during your free consultation. Browser-only, instant, no email required."
+            title="Four tools to plan your move to Ireland."
+            description="The same tools our senior counsellors run during your free consultation. Browser-only, instant, no email required."
           />
           <Link
             href="/tools"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.16em] text-royal-600 hover:text-navy-900"
+            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.16em] text-navy-900 underline decoration-gold-400 underline-offset-4 hover:decoration-navy-900"
           >
             See all tools <ArrowRight size={14} />
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURED_TOOLS.map((t, i) => (
-            <motion.div
+            <motion.li
               key={t.href}
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-5% 0px" }}
-              transition={{ duration: 0.5, delay: i * 0.05, ease: easeOut }}
+              transition={{ duration: 0.45, delay: i * 0.05, ease: easeOut }}
             >
               <Link
                 href={t.href}
-                className="group flex h-full items-start gap-4 rounded-3xl border border-navy-100 bg-white p-6 shadow-elevated transition-shadow hover:shadow-[0_24px_48px_-20px_rgba(10,23,51,0.25)]"
+                className="group flex h-full flex-col gap-4 border border-navy-100 bg-white p-6 transition-colors hover:border-navy-900"
               >
-                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-navy-900 text-gold-300">
-                  <t.icon size={18} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-display text-base font-semibold tracking-tight text-navy-900">
+                <t.icon size={26} strokeWidth={1.5} className="text-navy-900" />
+                <div className="flex-1">
+                  <p className="font-display text-base font-semibold text-navy-900">
                     {t.title}
                   </p>
-                  <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {t.blurb}
                   </p>
                 </div>
-                <ArrowUpRight
-                  size={14}
-                  className="mt-1 shrink-0 text-navy-500 transition-colors group-hover:text-navy-900"
-                />
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-700 transition-colors group-hover:text-navy-900">
+                  Open tool <ArrowRight size={12} />
+                </span>
               </Link>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </Container>
     </section>
   );
@@ -244,56 +225,46 @@ export function StoriesTeaser() {
   const featured = testimonials.slice(0, 2);
 
   return (
-    <section id="stories" className="relative py-24">
+    <section id="stories" className="bg-surface-cream py-16 sm:py-24">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             eyebrow="Success stories"
-            title={
-              <>
-                Real students. <br />
-                Real <span className="gradient-text">outcomes</span>.
-              </>
-            }
-            description="A small taste of what our students have gone on to achieve. Every story is anchored to one senior counsellor who owned the journey."
+            title="Real Indian students. Real Ireland outcomes."
+            description="A small sample of what our students have gone on to achieve at Irish universities. Every story is anchored to one senior counsellor."
           />
           <Link
             href="/stories"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.16em] text-royal-600 hover:text-navy-900"
+            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.16em] text-navy-900 underline decoration-gold-400 underline-offset-4 hover:decoration-navy-900"
           >
             Read all stories <ArrowRight size={14} />
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-10 grid gap-px border border-navy-100 bg-navy-100 sm:mt-12 sm:grid-cols-2">
           {featured.map((t, i) => (
             <motion.figure
               key={t.name}
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-5% 0px" }}
-              transition={{ duration: 0.5, delay: i * 0.05, ease: easeOut }}
-              className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-navy-100 bg-white p-8 shadow-elevated"
+              transition={{ duration: 0.45, delay: i * 0.05, ease: easeOut }}
+              className="flex flex-col gap-6 bg-white p-8 sm:p-10"
             >
-              <div className="absolute -right-6 -top-6 text-navy-100">
-                <Quote size={96} strokeWidth={1} />
-              </div>
-              <blockquote className="relative font-display text-xl font-medium leading-snug tracking-tight text-navy-900">
-                &ldquo;{t.quote}&rdquo;
+              <span className="text-gold-500 font-display text-5xl leading-none">&ldquo;</span>
+              <blockquote className="font-display text-lg leading-snug text-navy-900 sm:text-xl">
+                {t.quote}
               </blockquote>
-              <figcaption className="relative flex items-center gap-4 border-t border-navy-100 pt-5">
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-navy-900 to-navy-700 font-display text-sm font-semibold text-white">
+              <figcaption className="mt-auto flex items-center gap-3 border-t border-navy-100 pt-5">
+                <div className="flex h-11 w-11 items-center justify-center border border-gold-400 bg-white font-display text-xs font-semibold text-navy-900">
                   {t.name.split(" ").map((n) => n[0]).join("")}
                 </div>
                 <div>
-                  <p className="font-medium text-navy-900">{t.name}</p>
+                  <p className="text-sm font-semibold text-navy-900">{t.name}</p>
                   <p className="text-xs text-muted-foreground">
-                    {t.course} · {t.university}
+                    {t.course} &middot; {t.university}
                   </p>
                 </div>
-                <span className="ml-auto rounded-full bg-navy-50 px-3 py-1 text-xs font-medium text-navy-800">
-                  {t.country}
-                </span>
               </figcaption>
             </motion.figure>
           ))}
@@ -309,39 +280,30 @@ export function FAQTeaser() {
   const featured = faqs.slice(0, 3);
 
   return (
-    <section id="faq" className="relative py-24">
+    <section id="faq" className="border-y border-navy-100 bg-white py-16 sm:py-24">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-[1fr_1.4fr]">
           <div>
             <SectionHeading
               eyebrow="Questions"
-              title={
-                <>
-                  Top three <span className="gradient-text">questions</span>.
-                </>
-              }
-              description="The questions every student arrives with. See all six on the full FAQ page."
+              title="The questions every Ireland-bound student arrives with."
+              description="See the full FAQ for visa timelines, scholarships, accommodation and Type D documentation."
             />
             <Link
               href="/faq"
-              className={`mt-8 inline-flex w-fit ${buttonVariants({ variant: "outline", size: "lg" })}`}
+              className={`mt-7 inline-flex w-full sm:w-fit ${buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}`}
             >
               See full FAQ
             </Link>
           </div>
 
-          <ul className="flex flex-col divide-y divide-navy-100 rounded-3xl border border-navy-100 bg-white">
+          <ul className="flex flex-col divide-y divide-navy-100 border border-navy-100 bg-white">
             {featured.map((f) => (
-              <li key={f.q} className="p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <p className="font-display text-lg font-semibold tracking-tight text-navy-900">
-                    {f.q}
-                  </p>
-                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-navy-100 text-navy-500">
-                    <Plus size={14} />
-                  </span>
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <li key={f.q} className="p-6 sm:p-7">
+                <p className="font-display text-lg font-semibold text-navy-900">
+                  {f.q}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {f.a}
                 </p>
               </li>

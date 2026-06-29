@@ -14,7 +14,7 @@ export function Journey() {
   const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="journey" className="relative bg-navy-950 py-32 text-white">
+    <section id="journey" className="relative bg-navy-950 py-16 text-white sm:py-32">
       <div className="absolute inset-0 bg-grid opacity-[0.04]" />
       <div className="absolute -top-40 left-1/2 h-80 w-[120%] -translate-x-1/2 rounded-[100%] bg-royal-500/15 blur-3xl" />
 
@@ -35,14 +35,14 @@ export function Journey() {
           className="mx-auto items-center text-center"
         />
 
-        <div ref={ref} className="relative mx-auto mt-20 max-w-3xl">
+        <div ref={ref} className="relative mx-auto mt-10 max-w-3xl sm:mt-20">
           <div className="absolute left-6 top-2 bottom-2 w-px bg-white/10 sm:left-1/2 sm:-translate-x-1/2" />
           <motion.div
             style={{ height: progressHeight }}
             className="absolute left-6 top-2 w-px bg-gradient-to-b from-gold-300 via-gold-400 to-royal-500 sm:left-1/2 sm:-translate-x-1/2"
           />
 
-          <ol className="flex flex-col gap-12">
+          <ol className="flex flex-col gap-8 sm:gap-12">
             {journey.map((step, i) => {
               const isLeft = i % 2 === 0;
               return (
@@ -65,17 +65,17 @@ export function Journey() {
                   </div>
 
                   <div
-                    className={`ml-16 flex-1 rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur sm:ml-0 ${
+                    className={`ml-16 flex-1 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur sm:ml-0 sm:p-6 ${
                       isLeft ? "sm:mr-12 sm:text-right" : "sm:ml-12"
                     }`}
                   >
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-300 sm:text-xs sm:tracking-[0.18em]">
                       Step {step.step}
                     </p>
-                    <h3 className="mt-1 font-display text-2xl font-semibold tracking-tight text-white">
+                    <h3 className="mt-1 font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-navy-200">
+                    <p className="mt-2 text-[13px] leading-relaxed text-navy-200 sm:text-sm">
                       {step.description}
                     </p>
                   </div>

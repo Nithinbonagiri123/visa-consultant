@@ -78,8 +78,8 @@ export default async function ArticlePage({
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10 max-w-3xl">
-          <div className="flex flex-wrap items-center gap-3 text-xs">
+        <Container className="mt-6 max-w-3xl sm:mt-10">
+          <div className="flex flex-wrap items-center gap-2 text-[11px] sm:gap-3 sm:text-xs">
             <span className="rounded-full bg-navy-50 px-3 py-1 font-medium text-navy-800">
               {post.category}
             </span>
@@ -89,15 +89,15 @@ export default async function ArticlePage({
             </span>
           </div>
 
-          <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-navy-900 sm:text-5xl lg:text-[3.4rem]">
+          <h1 className="mt-4 font-display text-[2rem] font-semibold leading-[1.1] tracking-tight text-navy-900 sm:mt-6 sm:text-4xl lg:text-[3.4rem]">
             {post.title}
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
             {post.description}
           </p>
 
-          <div className="mt-8 flex items-center gap-3 border-t border-navy-100 pt-6 text-sm">
+          <div className="mt-6 flex items-center gap-3 border-t border-navy-100 pt-5 text-sm sm:mt-8 sm:pt-6">
             <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-navy-900 to-navy-700 font-display text-xs font-semibold text-white">
               {post.author
                 .split(" ")
@@ -113,32 +113,32 @@ export default async function ArticlePage({
         </Container>
       </section>
 
-      <Container className="max-w-3xl pb-16">
+      <Container className="max-w-3xl pb-10 sm:pb-16">
         <article>
           <MdxContent source={post.body} />
         </article>
 
-        <div className="mt-12 flex flex-wrap gap-2 border-t border-navy-100 pt-8">
+        <div className="mt-8 flex flex-wrap gap-2 border-t border-navy-100 pt-6 sm:mt-12 sm:pt-8">
           {post.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full bg-navy-50 px-3 py-1 text-xs font-medium text-navy-800"
+              className="rounded-full bg-navy-50 px-3 py-1 text-[11px] font-medium text-navy-800 sm:text-xs"
             >
               {t}
             </span>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
           <Link
             href="/#enquire"
-            className={buttonVariants({ variant: "primary", size: "lg" })}
+            className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
           >
             Book free consultation <ArrowRight size={18} />
           </Link>
           <Link
             href="/blog"
-            className={buttonVariants({ variant: "outline", size: "lg" })}
+            className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
           >
             More articles
           </Link>
@@ -146,15 +146,15 @@ export default async function ArticlePage({
       </Container>
 
       {related.length > 0 && (
-        <section className="border-t border-navy-100 bg-surface-muted py-20">
+        <section className="border-t border-navy-100 bg-surface-muted py-14 sm:py-20">
           <Container>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy-500">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500 sm:text-xs sm:tracking-[0.18em]">
               Continue reading
             </p>
-            <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl">
+            <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-navy-900 sm:text-3xl lg:text-4xl">
               Related guides
             </h2>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
               {related.map((p) => (
                 <PostCard key={p.slug} post={p} />
               ))}

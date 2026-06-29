@@ -31,7 +31,7 @@ export default function HowItWorksPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="The journey"
             align="center"

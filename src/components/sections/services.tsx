@@ -28,7 +28,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function Services() {
   return (
-    <section id="services" className="relative py-32">
+    <section id="services" className="relative py-16 sm:py-32">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-navy-200 to-transparent" />
       <Container>
         <SectionHeading
@@ -42,7 +42,7 @@ export function Services() {
           description="From the day you reach out to the day you land — a single dedicated counsellor and a senior team behind them."
         />
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-navy-100 bg-navy-100 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-navy-100 bg-navy-100 sm:mt-16 sm:grid-cols-2 sm:rounded-3xl lg:grid-cols-4">
           {services.map((s, i) => {
             const Icon = iconMap[s.icon];
             return (
@@ -52,16 +52,16 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-5% 0px" }}
                 transition={{ duration: 0.5, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex flex-col gap-5 bg-white p-8 transition-colors hover:bg-surface-muted"
+                className="group relative flex flex-col gap-4 bg-white p-5 transition-colors hover:bg-surface-muted sm:gap-5 sm:p-8"
               >
-                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-navy-900 text-white transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-gold-300 group-hover:to-gold-500 group-hover:text-navy-900">
+                <div className="grid h-10 w-10 place-items-center rounded-xl bg-navy-900 text-white transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-gold-300 group-hover:to-gold-500 group-hover:text-navy-900 sm:h-12 sm:w-12 sm:rounded-2xl">
                   {Icon && <Icon size={20} />}
                 </div>
                 <div>
-                  <h3 className="font-display text-xl font-semibold tracking-tight text-navy-900">
+                  <h3 className="font-display text-lg font-semibold tracking-tight text-navy-900 sm:text-xl">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
                     {s.description}
                   </p>
                 </div>

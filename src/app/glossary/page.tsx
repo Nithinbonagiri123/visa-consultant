@@ -36,7 +36,7 @@ export default function GlossaryPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Glossary"
             title={
@@ -49,14 +49,14 @@ export default function GlossaryPage() {
         </Container>
       </section>
 
-      <Container className="pb-24">
-        <div className="grid gap-12 lg:grid-cols-[200px_1fr]">
+      <Container className="pb-14 sm:pb-24">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[200px_1fr]">
           {/* Sticky category nav */}
           <aside className="lg:sticky lg:top-28 lg:self-start">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy-500">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500 sm:text-xs sm:tracking-[0.18em]">
               Categories
             </p>
-            <ul className="mt-4 flex flex-wrap gap-2 lg:flex-col">
+            <ul className="mt-3 flex flex-wrap gap-2 sm:mt-4 lg:flex-col">
               {glossaryCategories.map((cat) => (
                 <li key={cat}>
                   <a
@@ -71,24 +71,24 @@ export default function GlossaryPage() {
           </aside>
 
           {/* Glossary content */}
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-10 sm:gap-16">
             {glossaryCategories.map((cat) => {
               const items = glossary.filter((g) => g.category === cat);
               if (items.length === 0) return null;
               return (
                 <section key={cat} id={slugifyCategory(cat)} className="scroll-mt-28">
-                  <h2 className="font-display text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl">
+                  <h2 className="font-display text-2xl font-semibold tracking-tight text-navy-900 sm:text-3xl lg:text-4xl">
                     {cat}
                   </h2>
-                  <dl className="mt-8 grid gap-5">
+                  <dl className="mt-6 grid gap-4 sm:mt-8 sm:gap-5">
                     {items.map((g) => (
                       <div
                         key={g.slug}
                         id={g.slug}
-                        className="scroll-mt-28 rounded-3xl border border-navy-100 bg-white p-6 shadow-elevated"
+                        className="scroll-mt-28 rounded-2xl border border-navy-100 bg-white p-4 shadow-elevated sm:rounded-3xl sm:p-6"
                       >
-                        <dt className="flex items-baseline gap-3">
-                          <span className="font-display text-lg font-semibold tracking-tight text-navy-900">
+                        <dt className="flex flex-wrap items-baseline gap-2 sm:gap-3">
+                          <span className="font-display text-base font-semibold tracking-tight text-navy-900 sm:text-lg">
                             {g.term}
                           </span>
                           {g.abbr && (
@@ -97,7 +97,7 @@ export default function GlossaryPage() {
                             </span>
                           )}
                         </dt>
-                        <dd className="mt-2 text-sm leading-relaxed text-navy-800">
+                        <dd className="mt-2 text-[13px] leading-relaxed text-navy-800 sm:text-sm">
                           {g.definition}
                         </dd>
                       </div>
@@ -110,13 +110,13 @@ export default function GlossaryPage() {
             <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/#enquire"
-                className={buttonVariants({ variant: "primary", size: "lg" })}
+                className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
               >
                 Book free consultation <ArrowRight size={18} />
               </Link>
               <Link
                 href="/blog"
-                className={buttonVariants({ variant: "outline", size: "lg" })}
+                className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
               >
                 Read the blog
               </Link>

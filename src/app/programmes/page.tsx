@@ -34,7 +34,7 @@ export default function ProgrammesIndexPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Programmes"
             title={
@@ -47,8 +47,8 @@ export default function ProgrammesIndexPage() {
         </Container>
       </section>
 
-      <Container className="pb-24">
-        <div className="grid gap-10">
+      <Container className="pb-14 sm:pb-24">
+        <div className="grid gap-6 sm:gap-10">
           {programmes.map((p) => {
             const availableCountries = destinations.filter((d) =>
               (countryProgrammeFit[d.slug] ?? []).includes(p.slug),
@@ -58,16 +58,16 @@ export default function ProgrammesIndexPage() {
             return (
               <div
                 key={p.slug}
-                className="overflow-hidden rounded-3xl border border-navy-100 bg-white shadow-elevated"
+                className="overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-elevated sm:rounded-3xl"
               >
-                <div className="border-b border-navy-100 bg-surface-muted p-7">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-500">
+                <div className="border-b border-navy-100 bg-surface-muted p-5 sm:p-7">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-500 sm:text-xs sm:tracking-[0.18em]">
                     {p.category}
                   </p>
-                  <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-navy-900">
+                  <h2 className="mt-2 font-display text-xl font-semibold tracking-tight text-navy-900 sm:text-3xl">
                     {p.name}
                   </h2>
-                  <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+                  <p className="mt-3 max-w-2xl text-[13px] text-muted-foreground sm:text-sm">
                     {p.blurb}
                   </p>
                 </div>

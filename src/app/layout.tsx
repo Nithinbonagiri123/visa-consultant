@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { Navbar } from "@/components/layout/navbar";
@@ -17,8 +17,8 @@ const inter = Inter({
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
   },
   description: site.description,
   keywords: [
-    "study abroad consultants India",
-    "overseas education consultants India",
-    "student visa consultants India",
-    "best education consultants in India",
+    "Ireland student visa consultants India",
+    "study in Ireland from India",
     "Ireland education consultants India",
-    "UK study visa consultants",
-    "Canada student visa consultants",
-    "Australia education consultants",
-    "USA study abroad consultants",
+    "Trinity College Dublin admission consultants",
+    "University College Dublin admission consultants",
+    "Ireland MSc admission India",
+    "Ireland post study work visa",
+    "Ireland Type D student visa",
+    "Ireland scholarships Indian students",
   ],
   authors: [{ name: site.name }],
   openGraph: {
@@ -70,7 +70,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${manrope.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
         <CurrencyProvider>

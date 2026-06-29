@@ -33,7 +33,7 @@ export default function ServicesPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="What we do"
             title={
@@ -50,7 +50,7 @@ export default function ServicesPage() {
       <Services />
 
       {/* Specialist services — Test Prep + Post-Study */}
-      <section className="border-t border-navy-100 bg-surface-muted py-24">
+      <section className="border-t border-navy-100 bg-surface-muted py-14 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Specialist services"
@@ -61,14 +61,14 @@ export default function ServicesPage() {
             }
             description="Test prep and post-study services run as dedicated tracks with their own batches, trainers, and timelines."
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2">
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5">
             <Link
               href="/test-prep"
-              className="group relative overflow-hidden rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)]"
+              className="group relative overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)] sm:rounded-3xl sm:p-7"
             >
               <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-royal-500/10 to-gold-400/10 blur-2xl" />
-              <div className="relative flex items-start gap-5">
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-navy-900 text-gold-300">
+              <div className="relative flex items-start gap-4 sm:gap-5">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-navy-900 text-gold-300 sm:h-12 sm:w-12 sm:rounded-2xl">
                   <BookOpen size={20} />
                 </div>
                 <div className="flex-1">
@@ -87,11 +87,11 @@ export default function ServicesPage() {
 
             <Link
               href="/post-study-services"
-              className="group relative overflow-hidden rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)]"
+              className="group relative overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)] sm:rounded-3xl sm:p-7"
             >
               <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-royal-500/10 to-gold-400/10 blur-2xl" />
-              <div className="relative flex items-start gap-5">
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-navy-900 text-gold-300">
+              <div className="relative flex items-start gap-4 sm:gap-5">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-navy-900 text-gold-300 sm:h-12 sm:w-12 sm:rounded-2xl">
                   <Briefcase size={20} />
                 </div>
                 <div className="flex-1">

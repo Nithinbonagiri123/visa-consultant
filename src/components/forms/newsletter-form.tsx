@@ -94,7 +94,7 @@ export function NewsletterForm({
                 disabled={state === "loading"}
                 aria-label="Email address"
                 className={cn(
-                  "h-9 flex-1 bg-transparent text-sm placeholder:text-current/40 focus:outline-none",
+                  "h-9 min-w-0 flex-1 bg-transparent text-base placeholder:text-current/40 focus:outline-none sm:text-sm",
                   onDark
                     ? "text-white placeholder:text-navy-300"
                     : "text-navy-900 placeholder:text-navy-400",

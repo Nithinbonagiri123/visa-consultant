@@ -74,37 +74,37 @@ export default async function UniversityPage({
       <BreadcrumbJsonLd items={crumbs} />
       <CollegeJsonLd u={u} />
 
-      <section className="relative isolate overflow-hidden pb-20">
+      <section className="relative isolate overflow-hidden pb-12 sm:pb-20">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-surface-muted via-white to-white" />
         <div className="absolute inset-0 -z-10 bg-grid opacity-[0.04]" />
         <div className="absolute inset-x-0 top-0 -z-10 h-[60vh] bg-radial-fade" />
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
-          <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+        <Container className="mt-6 sm:mt-10">
+          <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1.1fr_1fr]">
             <div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-navy-100 bg-white/70 px-3 py-1.5 text-xs font-medium text-navy-800 backdrop-blur">
+              <div className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white/70 px-3 py-1.5 text-[11px] font-medium text-navy-800 backdrop-blur sm:gap-3 sm:text-xs">
                 <span className="text-base leading-none">{u.flag}</span>
                 {u.city} · {country?.country} · QS #{u.qsRanking}
               </div>
-              <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-navy-900 sm:text-6xl">
+              <h1 className="mt-4 font-display text-[2rem] font-semibold leading-[1.05] tracking-tight text-navy-900 sm:mt-6 sm:text-5xl lg:text-6xl">
                 {u.name}
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:mt-6 sm:text-base lg:text-lg">
                 {u.blurb}
               </p>
 
-              <dl className="mt-8 grid max-w-lg grid-cols-3 gap-4">
+              <dl className="mt-6 grid max-w-lg grid-cols-3 gap-2 sm:mt-8 sm:gap-4">
                 <Stat label="Founded" value={String(u.founded)} />
                 <Stat label="QS World" value={`#${u.qsRanking}`} />
                 <Stat label="Type" value={u.type === "public" ? "Public" : "Private"} />
               </dl>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
                 <a
                   href="#enquire"
-                  className={buttonVariants({ variant: "primary", size: "lg" })}
+                  className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
                 >
                   Book free counselling <ArrowRight size={18} />
                 </a>
@@ -112,7 +112,7 @@ export default async function UniversityPage({
                   href={u.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={buttonVariants({ variant: "outline", size: "lg" })}
+                  className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
                 >
                   Visit university site <ExternalLink size={16} />
                 </a>
@@ -126,7 +126,7 @@ export default async function UniversityPage({
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className="py-14 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Admission thresholds"
@@ -137,12 +137,12 @@ export default async function UniversityPage({
             }
             description="What the average successful applicant looks like. We don't pretend below-bar students can't get in — we plan around it."
           />
-          <div className="mt-12 overflow-hidden rounded-3xl border border-navy-100 bg-white shadow-elevated">
-            <table className="w-full divide-y divide-navy-100">
-              <thead className="bg-surface-muted text-left text-xs font-semibold uppercase tracking-[0.16em] text-navy-700">
+          <div className="mt-8 overflow-x-auto rounded-2xl border border-navy-100 bg-white shadow-elevated sm:mt-12 sm:rounded-3xl">
+            <table className="w-full divide-y divide-navy-100 text-sm">
+              <thead className="bg-surface-muted text-left text-[10px] font-semibold uppercase tracking-[0.14em] text-navy-700 sm:text-xs sm:tracking-[0.16em]">
                 <tr>
-                  <th className="px-6 py-4">Requirement</th>
-                  <th className="px-6 py-4">Typical bar</th>
+                  <th className="px-4 py-3 sm:px-6 sm:py-4">Requirement</th>
+                  <th className="px-4 py-3 sm:px-6 sm:py-4">Typical bar</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-navy-100">
@@ -178,7 +178,7 @@ export default async function UniversityPage({
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className="py-14 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Strongest at"
@@ -188,7 +188,7 @@ export default async function UniversityPage({
               </>
             }
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {u.strengths.map((s) => (
               <div
                 key={s}
@@ -205,7 +205,7 @@ export default async function UniversityPage({
       </section>
 
       {matchedProgrammes.length > 0 && country && (
-        <section className="py-24">
+        <section className="py-14 sm:py-24">
           <Container>
             <SectionHeading
               eyebrow="Popular programmes"
@@ -215,7 +215,7 @@ export default async function UniversityPage({
                 </>
               }
             />
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
+            <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-5 sm:grid-cols-2 lg:grid-cols-2">
               {matchedProgrammes.map((p) => (
                 <Link
                   key={p.slug}
@@ -243,7 +243,7 @@ export default async function UniversityPage({
         </section>
       )}
 
-      <section className="bg-navy-950 py-24 text-white">
+      <section className="bg-navy-950 py-14 text-white sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Funding"
@@ -253,12 +253,12 @@ export default async function UniversityPage({
               </span>
             }
           />
-          <div className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur">
-            <div className="flex items-start gap-4">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-gold-300 to-gold-500 text-navy-900">
+          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur sm:mt-10 sm:rounded-3xl sm:p-7">
+            <div className="flex items-start gap-3 sm:gap-4">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-gold-300 to-gold-500 text-navy-900 sm:h-11 sm:w-11">
                 <Trophy size={18} />
               </span>
-              <p className="text-base leading-relaxed text-navy-100">{u.scholarshipNote}</p>
+              <p className="text-[15px] leading-relaxed text-navy-100 sm:text-base">{u.scholarshipNote}</p>
             </div>
             <Link
               href="/scholarships"
@@ -277,11 +277,11 @@ export default async function UniversityPage({
 
 function Stat({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-navy-100 bg-white p-4">
-      <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-500">
+    <div className="rounded-xl border border-navy-100 bg-white p-3 sm:rounded-2xl sm:p-4">
+      <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-navy-500 sm:text-[11px] sm:tracking-[0.16em]">
         {label}
       </dt>
-      <dd className="mt-1 font-display text-base font-semibold text-navy-900">
+      <dd className="mt-1 font-display text-[13px] font-semibold text-navy-900 sm:text-base">
         {value}
       </dd>
     </div>
@@ -291,13 +291,14 @@ function Stat({ label, value }: { label: string; value: React.ReactNode }) {
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <tr>
-      <td className="px-6 py-4 text-sm font-medium text-navy-900">
-        <span className="inline-flex items-center gap-3">
-          <GraduationCap size={16} className="text-gold-400" />
+      <td className="px-4 py-3 text-[13px] font-medium text-navy-900 sm:px-6 sm:py-4 sm:text-sm">
+        <span className="inline-flex items-center gap-2 sm:gap-3">
+          <GraduationCap size={14} className="text-gold-400 sm:hidden" />
+          <GraduationCap size={16} className="hidden text-gold-400 sm:inline" />
           {label}
         </span>
       </td>
-      <td className="px-6 py-4 text-sm text-navy-800">{value}</td>
+      <td className="px-4 py-3 text-[13px] text-navy-800 sm:px-6 sm:py-4 sm:text-sm">{value}</td>
     </tr>
   );
 }

@@ -59,16 +59,16 @@ export function EnquiryForm() {
   return (
     <div id="enquire" className="relative">
       <div className="absolute -inset-2 -z-10 rounded-[2rem] bg-gradient-to-br from-gold-300/30 via-royal-400/20 to-transparent blur-2xl" />
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-white/60 bg-white/85 p-6 shadow-elevated backdrop-blur-xl sm:p-8">
+      <div className="relative overflow-hidden rounded-[1.5rem] border border-white/60 bg-white/85 p-5 shadow-elevated backdrop-blur-xl sm:rounded-[1.75rem] sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="inline-flex items-center gap-1.5 rounded-full bg-navy-900 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-300">
+            <p className="inline-flex items-center gap-1.5 rounded-full bg-navy-900 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-300 sm:text-[11px] sm:tracking-[0.16em]">
               <Sparkles size={12} /> Free consultation
             </p>
-            <h3 className="mt-3 font-display text-2xl font-semibold leading-tight tracking-tight text-navy-900">
+            <h3 className="mt-3 font-display text-xl font-semibold leading-tight tracking-tight text-navy-900 sm:text-2xl">
               Talk to a senior counsellor.
             </h3>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="mt-1 text-[13px] text-muted-foreground sm:text-sm">
               30 minutes. No obligation. A real plan you can act on.
             </p>
           </div>

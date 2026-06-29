@@ -83,29 +83,29 @@ export default async function CityPage({
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
-          <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+        <Container className="mt-6 sm:mt-10">
+          <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1.1fr_1fr]">
             <div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-navy-100 bg-white/70 px-3 py-1.5 text-xs font-medium text-navy-800 backdrop-blur">
+              <div className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white/70 px-3 py-1.5 text-[11px] font-medium text-navy-800 backdrop-blur sm:gap-3 sm:text-xs">
                 <span className="text-base leading-none">{city.flag}</span>
                 {country.country} · {city.vibe}
               </div>
-              <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-navy-900 sm:text-6xl">
+              <h1 className="mt-4 font-display text-[2rem] font-semibold leading-[1.05] tracking-tight text-navy-900 sm:mt-6 sm:text-5xl lg:text-6xl">
                 Study in <span className="gradient-text">{city.name}</span>
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:mt-6 sm:text-base lg:text-lg">
                 {city.heroLede}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
                 <a
                   href="#enquire"
-                  className={buttonVariants({ variant: "primary", size: "lg" })}
+                  className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
                 >
                   Book free consultation <ArrowRight size={18} />
                 </a>
                 <Link
                   href={`/study-in-${country.slug}`}
-                  className={buttonVariants({ variant: "outline", size: "lg" })}
+                  className={buttonVariants({ variant: "outline", size: "lg", className: "w-full sm:w-auto" })}
                 >
                   See {country.country} overview
                 </Link>
@@ -119,7 +119,7 @@ export default async function CityPage({
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className="py-14 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Why this city"
@@ -145,7 +145,7 @@ export default async function CityPage({
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className="py-14 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Top universities"
@@ -173,7 +173,7 @@ export default async function CityPage({
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className="py-14 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Cost of living"
@@ -212,7 +212,7 @@ export default async function CityPage({
         </Container>
       </section>
 
-      <section className="bg-navy-950 py-24 text-white">
+      <section className="bg-navy-950 py-14 text-white sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Day-to-day"
@@ -231,7 +231,7 @@ export default async function CityPage({
       </section>
 
       {matchedProgrammes.length > 0 && (
-        <section className="py-24">
+        <section className="py-14 sm:py-24">
           <Container>
             <SectionHeading
               eyebrow="Popular programmes"

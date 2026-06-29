@@ -143,7 +143,7 @@ export default function PostStudyServicesPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Post-study services"
             title={
@@ -162,7 +162,7 @@ export default function PostStudyServicesPage() {
           {services.map((s) => (
             <article
               key={s.title}
-              className="relative overflow-hidden rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated"
+              className="relative overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated sm:rounded-3xl sm:p-7"
             >
               <div className="flex items-start gap-4">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-navy-900 text-gold-300">
@@ -197,8 +197,8 @@ export default function PostStudyServicesPage() {
           ))}
         </div>
 
-        <div className="mt-12 rounded-3xl border border-navy-100 bg-gradient-to-br from-navy-900 via-navy-800 to-royal-600 p-8 text-white shadow-elevated sm:p-12">
-          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+        <div className="mt-8 rounded-2xl border border-navy-100 bg-gradient-to-br from-navy-900 via-navy-800 to-royal-600 p-6 text-white shadow-elevated sm:mt-12 sm:rounded-3xl sm:p-12">
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-300 backdrop-blur">
                 Bundled with your study package

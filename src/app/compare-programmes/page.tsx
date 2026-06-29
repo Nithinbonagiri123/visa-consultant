@@ -36,7 +36,7 @@ export default function CompareProgrammesIndex() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Programme head-to-heads"
             title={
@@ -59,7 +59,7 @@ export default function CompareProgrammesIndex() {
               <Link
                 key={`${a}-${b}`}
                 href={`/compare-programmes/${buildProgrammePairSlug(a, b)}`}
-                className="group rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)]"
+                className="group rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)] sm:rounded-3xl sm:p-7"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-500">
                   {intent}

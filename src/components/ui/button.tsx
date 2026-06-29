@@ -3,18 +3,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium tracking-tight transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-500/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm font-medium tracking-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-navy-900 text-white hover:bg-navy-800 shadow-elevated hover:-translate-y-0.5",
+          "bg-navy-900 text-white hover:bg-navy-800",
         gold:
-          "bg-gradient-to-br from-gold-300 to-gold-500 text-navy-900 hover:brightness-105 shadow-glow-gold hover:-translate-y-0.5",
+          "bg-gold-400 text-navy-900 hover:bg-gold-500 hover:text-white",
         outline:
-          "border border-navy-200 bg-white/70 text-navy-900 hover:border-navy-900 hover:bg-white backdrop-blur",
+          "border border-navy-300 bg-white text-navy-900 hover:border-navy-900",
         ghost: "text-navy-900 hover:bg-navy-50",
-        link: "text-royal-600 underline-offset-4 hover:underline px-0 h-auto",
+        link: "text-navy-900 underline underline-offset-4 decoration-gold-400 hover:decoration-navy-900 px-0 h-auto",
       },
       size: {
         sm: "h-9 px-4 text-sm",

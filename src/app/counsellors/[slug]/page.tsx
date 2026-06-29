@@ -73,25 +73,25 @@ export default async function CounsellorPage({
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
-            <div className="flex flex-col items-start gap-6">
-              <Avatar name={c.name} size="xl" className="h-32 w-32 text-3xl" />
+        <Container className="mt-6 sm:mt-10">
+          <div className="grid gap-8 sm:gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
+            <div className="flex flex-col items-start gap-5 sm:gap-6">
+              <Avatar name={c.name} size="xl" className="h-24 w-24 text-2xl sm:h-32 sm:w-32 sm:text-3xl" />
               <div>
-                <p className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white/70 px-3 py-1 text-xs font-medium text-navy-800 backdrop-blur">
+                <p className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white/70 px-3 py-1 text-[11px] font-medium text-navy-800 backdrop-blur sm:text-xs">
                   <Award size={12} className="text-gold-500" /> Senior counsellor
                 </p>
-                <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-navy-900 sm:text-5xl">
+                <h1 className="mt-3 font-display text-[2rem] font-semibold leading-[1.05] tracking-tight text-navy-900 sm:mt-4 sm:text-4xl lg:text-5xl">
                   {c.name}
                 </h1>
-                <p className="mt-3 text-base font-medium text-royal-600">
+                <p className="mt-2 text-[15px] font-medium text-royal-600 sm:mt-3 sm:text-base">
                   {c.role}
                 </p>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
                 <Link
                   href="/#enquire"
-                  className={buttonVariants({ variant: "primary", size: "lg" })}
+                  className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}
                 >
                   Book with {c.name.split(" ")[0]} <ArrowRight size={18} />
                 </Link>
@@ -101,7 +101,7 @@ export default async function CounsellorPage({
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(37,211,102,0.5)] transition-transform hover:-translate-y-0.5"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(37,211,102,0.5)] transition-transform hover:-translate-y-0.5 sm:w-auto"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M.057 24l1.687-6.163A11.867 11.867 0 010 11.985C.003 5.369 5.373 0 11.985 0c3.207 0 6.222 1.248 8.487 3.513a11.882 11.882 0 013.51 8.487c-.003 6.616-5.374 11.986-11.99 11.986a11.99 11.99 0 01-5.733-1.459L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.003-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607z" /></svg>
                   WhatsApp {c.name.split(" ")[0]}
@@ -109,20 +109,20 @@ export default async function CounsellorPage({
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-3xl border border-navy-100 bg-white p-8 shadow-elevated">
+            <div className="relative overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated sm:rounded-3xl sm:p-8">
               <Quote
                 size={96}
                 strokeWidth={1}
                 className="absolute -right-6 -top-6 text-navy-100"
               />
-              <p className="relative font-display text-xl font-medium leading-snug tracking-tight text-navy-900 sm:text-2xl">
+              <p className="relative font-display text-lg font-medium leading-snug tracking-tight text-navy-900 sm:text-xl lg:text-2xl">
                 &ldquo;{c.philosophy}&rdquo;
               </p>
-              <p className="relative mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-navy-500">
+              <p className="relative mt-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-navy-500 sm:mt-5 sm:text-xs sm:tracking-[0.16em]">
                 Counselling philosophy
               </p>
 
-              <dl className="relative mt-8 grid grid-cols-2 gap-6 border-t border-navy-100 pt-6">
+              <dl className="relative mt-6 grid grid-cols-2 gap-4 border-t border-navy-100 pt-5 sm:mt-8 sm:gap-6 sm:pt-6">
                 <div>
                   <dt className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500">
                     <Users size={12} className="text-gold-500" /> Experience
@@ -145,8 +145,8 @@ export default async function CounsellorPage({
         </Container>
       </section>
 
-      <Container className="pb-24">
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
+      <Container className="pb-14 sm:pb-24">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1.5fr_1fr]">
           <article className="prose-brand max-w-none">
             <h2>Background</h2>
             {c.bio.split("\n\n").map((para, i) => (
@@ -155,7 +155,7 @@ export default async function CounsellorPage({
           </article>
 
           <aside className="flex flex-col gap-6">
-            <div className="rounded-3xl border border-navy-100 bg-surface-muted p-6">
+            <div className="rounded-2xl border border-navy-100 bg-surface-muted p-5 sm:rounded-3xl sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-navy-500">
                 Country specialism
               </p>
@@ -172,7 +172,7 @@ export default async function CounsellorPage({
               </div>
             </div>
 
-            <div className="rounded-3xl border border-navy-100 bg-surface-muted p-6">
+            <div className="rounded-2xl border border-navy-100 bg-surface-muted p-5 sm:rounded-3xl sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-navy-500">
                 Field expertise
               </p>
@@ -191,7 +191,7 @@ export default async function CounsellorPage({
         </div>
       </Container>
 
-      <section className="border-t border-navy-100 bg-surface-muted py-20">
+      <section className="border-t border-navy-100 bg-surface-muted py-14 sm:py-20">
         <Container>
           <SectionHeading
             eyebrow="Recent placements"
@@ -201,11 +201,11 @@ export default async function CounsellorPage({
               </>
             }
           />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 sm:grid-cols-2">
             {c.successStories.map((s) => (
               <div
                 key={s.studentName}
-                className="rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated"
+                className="rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated sm:rounded-3xl sm:p-7"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-500">
                   {s.country}
@@ -224,13 +224,13 @@ export default async function CounsellorPage({
       </section>
 
       {others.length > 0 && (
-        <section className="py-20">
+        <section className="py-14 sm:py-20">
           <Container>
             <SectionHeading
               eyebrow="Meet the rest of the team"
               title={<>Other senior counsellors</>}
             />
-            <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 sm:grid-cols-3">
               {others.map((o) => (
                 <Link
                   key={o.slug}

@@ -40,7 +40,7 @@ export default function GuidesIndex() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Free guides"
             title={
@@ -53,40 +53,40 @@ export default function GuidesIndex() {
         </Container>
       </section>
 
-      <Container className="pb-24">
-        <div className="grid gap-6 sm:grid-cols-2">
+      <Container className="pb-14 sm:pb-24">
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
           {guides.map((g) => (
             <Link
               key={g.slug}
               href={`/guides/${g.slug}`}
-              className="group overflow-hidden rounded-3xl border border-navy-100 bg-white shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)]"
+              className="group overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)] sm:rounded-3xl"
             >
               <div
                 className={cn(
-                  "relative h-44 bg-gradient-to-br p-7 text-white",
+                  "relative h-36 bg-gradient-to-br p-5 text-white sm:h-44 sm:p-7",
                   themeStyles[g.cover.theme],
                 )}
               >
                 <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-gold-400/20 blur-3xl" />
                 <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-royal-500/30 blur-3xl" />
                 <div className="relative flex h-full flex-col justify-between">
-                  <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-300">
+                  <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-300 sm:text-[11px] sm:tracking-[0.18em]">
                     <BookOpen size={12} />
                     {g.tier} guide · {g.pages} pages
                   </div>
                   {g.cover.flag && (
-                    <div className="text-5xl leading-none">{g.cover.flag}</div>
+                    <div className="text-4xl leading-none sm:text-5xl">{g.cover.flag}</div>
                   )}
                 </div>
               </div>
-              <div className="p-7">
-                <h3 className="font-display text-xl font-semibold tracking-tight text-navy-900">
+              <div className="p-5 sm:p-7">
+                <h3 className="font-display text-lg font-semibold tracking-tight text-navy-900 sm:text-xl">
                   {g.title}
                 </h3>
-                <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
+                <p className="mt-2 line-clamp-2 text-[13px] text-muted-foreground sm:text-sm">
                   {g.subtitle}
                 </p>
-                <div className="mt-5 flex items-center justify-between">
+                <div className="mt-4 flex items-center justify-between sm:mt-5">
                   <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-500">
                     Get free PDF
                   </span>

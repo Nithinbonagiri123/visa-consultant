@@ -47,22 +47,20 @@ const nextConfig: NextConfig = {
 
   async rewrites() {
     return [
-      // City pages (Tier-2 SEO). These must come before the country catch-all
-      // so /study-in-dublin hits the city route, not the destination route.
+      // IRELAND-ONLY SCOPE: only Dublin/Ireland routes are active.
+      // Non-Ireland city rewrites preserved below (commented) for future expansion.
       { source: "/study-in-dublin",     destination: "/cities/dublin" },
-      { source: "/study-in-london",     destination: "/cities/london" },
-      { source: "/study-in-manchester", destination: "/cities/manchester" },
-      { source: "/study-in-toronto",    destination: "/cities/toronto" },
-      { source: "/study-in-vancouver",  destination: "/cities/vancouver" },
-      { source: "/study-in-melbourne",  destination: "/cities/melbourne" },
-      { source: "/study-in-sydney",     destination: "/cities/sydney" },
-      { source: "/study-in-berlin",     destination: "/cities/berlin" },
+      // { source: "/study-in-london",     destination: "/cities/london" },
+      // { source: "/study-in-manchester", destination: "/cities/manchester" },
+      // { source: "/study-in-toronto",    destination: "/cities/toronto" },
+      // { source: "/study-in-vancouver",  destination: "/cities/vancouver" },
+      // { source: "/study-in-melbourne",  destination: "/cities/melbourne" },
+      // { source: "/study-in-sydney",     destination: "/cities/sydney" },
+      // { source: "/study-in-berlin",     destination: "/cities/berlin" },
 
-      // Country pages (catch-all). Public, SEO-canonical URLs map to the
-      // cleaner internal /destinations route. Next 16's Turbopack mishandles
-      // mixed-text dynamic segments like `study-in-[slug]`, so this rewrite
-      // keeps /study-in-ireland visible to users + search engines while the
-      // route handler lives at /destinations/[slug].
+      // Country catch-all: only /study-in-ireland resolves while non-Ireland
+      // destinations are scoped out. (`generateStaticParams` in the destination
+      // route is fed by `destinations` in site.ts — Ireland-only.)
       { source: "/study-in-:slug", destination: "/destinations/:slug" },
     ];
   },

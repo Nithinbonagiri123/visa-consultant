@@ -39,7 +39,7 @@ export default function CounsellorsPage() {
 
         <Breadcrumb items={crumbs} />
 
-        <Container className="mt-10">
+        <Container className="mt-6 sm:mt-10">
           <SectionHeading
             eyebrow="Meet the team"
             title={
@@ -52,30 +52,30 @@ export default function CounsellorsPage() {
         </Container>
       </section>
 
-      <Container className="pb-24">
-        <div className="grid gap-6 sm:grid-cols-2">
+      <Container className="pb-14 sm:pb-24">
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
           {counsellors.map((c) => (
             <Link
               key={c.slug}
               href={`/counsellors/${c.slug}`}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)]"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)] sm:rounded-3xl sm:p-7"
             >
-              <div className="flex items-start gap-5">
+              <div className="flex items-start gap-4 sm:gap-5">
                 <Avatar name={c.name} size="xl" />
-                <div className="flex-1">
-                  <h2 className="font-display text-2xl font-semibold tracking-tight text-navy-900">
+                <div className="min-w-0 flex-1">
+                  <h2 className="font-display text-xl font-semibold tracking-tight text-navy-900 sm:text-2xl">
                     {c.name}
                   </h2>
-                  <p className="mt-1 text-sm font-medium text-royal-600">
+                  <p className="mt-1 text-[13px] font-medium text-royal-600 sm:text-sm">
                     {c.role}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
                     {c.shortBio}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-2 gap-4 border-t border-navy-100 pt-5">
+              <div className="mt-5 grid grid-cols-2 gap-4 border-t border-navy-100 pt-4 sm:mt-6 sm:pt-5">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500">
                     Experience

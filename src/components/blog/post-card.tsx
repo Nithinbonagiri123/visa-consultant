@@ -13,17 +13,17 @@ export function PostCard({
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-col overflow-hidden rounded-3xl border border-navy-100 bg-white p-7 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)]"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-elevated transition-shadow hover:shadow-[0_30px_60px_-20px_rgba(10,23,51,0.25)] sm:rounded-3xl sm:p-7"
     >
       <Meta post={post} />
-      <h3 className="mt-4 font-display text-2xl font-semibold leading-tight tracking-tight text-navy-900">
+      <h3 className="mt-3 font-display text-xl font-semibold leading-tight tracking-tight text-navy-900 sm:mt-4 sm:text-2xl">
         {post.title}
       </h3>
-      <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+      <p className="mt-3 line-clamp-3 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
         {post.description}
       </p>
-      <div className="mt-6 flex items-center justify-between border-t border-navy-100 pt-4">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-500">
+      <div className="mt-5 flex items-center justify-between border-t border-navy-100 pt-4 sm:mt-6">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-500 sm:text-[11px] sm:tracking-[0.18em]">
           Read article
         </span>
         <span className="grid h-9 w-9 place-items-center rounded-full border border-navy-100 text-navy-700 transition-all duration-300 group-hover:border-navy-900 group-hover:bg-navy-900 group-hover:text-white">
@@ -38,22 +38,22 @@ function FeaturedCard({ post }: { post: PostMeta }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-navy-100 bg-gradient-to-br from-navy-900 via-navy-800 to-royal-600 p-8 text-white shadow-elevated sm:p-12"
+      className="group relative flex flex-col overflow-hidden rounded-[1.5rem] border border-navy-100 bg-gradient-to-br from-navy-900 via-navy-800 to-royal-600 p-6 text-white shadow-elevated sm:rounded-[2rem] sm:p-12"
     >
       <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold-400/20 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-royal-500/30 blur-3xl" />
 
       <div className="relative">
-        <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-300 backdrop-blur">
+        <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-300 backdrop-blur sm:text-[11px] sm:tracking-[0.18em]">
           Featured · {post.category}
         </p>
-        <h3 className="mt-5 max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        <h3 className="mt-4 max-w-2xl font-display text-2xl font-semibold leading-tight tracking-tight sm:mt-5 sm:text-3xl lg:text-4xl">
           {post.title}
         </h3>
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-navy-200 sm:text-base">
+        <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-navy-200 sm:mt-4 sm:text-base">
           {post.description}
         </p>
-        <div className="mt-8 flex items-center gap-4 text-xs text-navy-200">
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-[11px] text-navy-200 sm:mt-8 sm:gap-4 sm:text-xs">
           <span>{formatDate(post.date)}</span>
           <span className="inline-flex items-center gap-1.5">
             <Clock size={12} /> {post.readingMinutes} min read
