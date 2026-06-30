@@ -36,6 +36,15 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingRoot: process.cwd(),
 
+  // Allowed remote hosts for next/image. Unsplash supplies the stock
+  // photography used in the homepage hero / sections; swap or remove once
+  // the team uploads commissioned imagery to /public.
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+    ],
+  },
+
   async headers() {
     return [
       {
